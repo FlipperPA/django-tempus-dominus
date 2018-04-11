@@ -4,9 +4,9 @@ The package `django-tempus-dominus` provides Django widgets for the Tempus Domin
 
 ## Installation
 
-`pip install django-pg-copy` (Coming soon)
+`pip install django-tempus-dominus` (Coming soon)
 
-`pip install git+https://github.com/FlipperPA/django-pg-copy.git` (For now)
+`pip install git+https://github.com/FlipperPA/django-tempus-dominus.git` (For now)
 
 ## Contributors
 
