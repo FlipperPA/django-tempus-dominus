@@ -11,27 +11,16 @@ class TempusDominusMixin(object):
     class Media:
         css = {
             'all': (
-                'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css',
+                '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css',
             ),
         }
         js = (
-            'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js',
         )
 
     html_template = """
-        <div class="form-group">
-            <div class="input-group date" id="{picker_id}" data-target-input="nearest">
-                <input type="text" class="form-control datetimepicker-input" data-target="#{picker_id}"/>
-                <div class="input-group-append" data-target="#{picker_id}" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="{icon_attrs}"></i></div>
-                </div>
-            </div>
-        </div>
-    """
-
-    html_template = """
-        <input type="{type}" name="{picker_id}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}">
+        <input type="{type}" name="{name}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}">
         <script type="text/javascript">
             $(function () {{
                 $('#{picker_id}').datetimepicker({options});
@@ -45,7 +34,11 @@ class TempusDominusMixin(object):
         pprint(dir(self))
         print('ATTRS')
         pprint(attrs)
-        print('VALUE', self.subwidgets())
+        # print('VALUE', self.subwidgets())
+
+        context = super().get_context(name, value, attrs)
+        print('CONTEXT')
+        pprint(context)
 
         """
         {% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}
@@ -59,10 +52,15 @@ class TempusDominusMixin(object):
                 value=attr_value,
             )
 
+        value_html = ''
+        if context['widget']['value'] is not None:
+            value_html = ' value="{}"'.format(context['widget']['value'])
+
         field_html = self.html_template.format(
-            type=self.input_type,
-            picker_id='123456',
-            value='2018-04-01',
+            type=context['widget']['type'],
+            picker_id=context['widget']['attrs']['id'],
+            name=context['widget']['name'],
+            value=value_html,
             attrs=attr_html,
             options=json_dumps(self.options),
         )
