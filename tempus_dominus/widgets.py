@@ -15,15 +15,10 @@ class TempusDominusMixin(object):
             ),
         }
         js = (
+            'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js',
         )
 
-
-class DatePicker(DateInput, TempusDominusMixin):
-    pass
-
-
-class DateTimePicker(DateTimeInput, TempusDominusMixin):
     html_template = """
         <div class="form-group">
             <div class="input-group date" id="{picker_id}" data-target-input="nearest">
@@ -35,37 +30,54 @@ class DateTimePicker(DateTimeInput, TempusDominusMixin):
         </div>
     """
 
-    """
-
-                    <div{div_attrs}>
-            <input{input_attrs}>
-            <span class="input-group-addon">
-                <span{icon_attrs}></span>
-            </span>
-        </div>
-    """
-
-    js_template = """
+    html_template = """
+        <input type="{type}" name="{picker_id}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}">
         <script type="text/javascript">
-            $(function () {
+            $(function () {{
                 $('#{picker_id}').datetimepicker({options});
-            });
+            }});
         </script>
     """
 
-    '''
-        <script>
-            (function(window) {
-                var callback = function() {
-                    $(function(){$("#%(picker_id)s:has(input:not([readonly],[disabled]))").datepicker(%(options)s);});
-                };
-                if(window.addEventListener)
-                    window.addEventListener("load", callback, false);
-                else if (window.attachEvent)
-                    window.attachEvent("onload", callback);
-                else window.onload = callback;
-            })(window);
-        </script>'''
+    def render(self, name, value, attrs=None):
+        from pprint import pprint
+        print('SELF')
+        pprint(dir(self))
+        print('ATTRS')
+        pprint(attrs)
+        print('VALUE', self.subwidgets())
+
+        """
+        {% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}
+        % include "django/forms/widgets/attrs.html" %
+        """
+
+        attr_html = ''
+        for attr_key, attr_value in self.attrs.items():
+            attr_html += ' {key}="{value}"'.format(
+                key=attr_key,
+                value=attr_value,
+            )
+
+        field_html = self.html_template.format(
+            type=self.input_type,
+            picker_id='123456',
+            value='2018-04-01',
+            attrs=attr_html,
+            options=json_dumps(self.options),
+        )
+
+        print(field_html)
+        return mark_safe(field_html)
+
+
+class DatePicker(TempusDominusMixin, DateInput):
+    options = {
+        'format': 'L',
+    }
+
+
+class DateTimePicker(DateTimeInput, TempusDominusMixin):
 
     def __init__(self, attrs=None, format=None, options=None, div_attrs=None, icon_attrs=None):
         if not icon_attrs:
