@@ -1,6 +1,6 @@
 from json import dumps as json_dumps
 
-from django.forms.widgets import DateInput, DateTimeInput, TimeInput, YearInput
+from django.forms.widgets import DateInput, DateTimeInput, TimeInput
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
 
@@ -77,10 +77,4 @@ class DateTimePicker(TempusDominusMixin, DateTimeInput):
 class TimePicker(TempusDominusMixin, TimeInput):
     js_options = {
         'format': 'HH:mm:ss',
-    }
-
-
-class YearPicker(TempusDominusMixin, YearInput):
-    js_options = {
-        'format': 'YYYY',
     }
