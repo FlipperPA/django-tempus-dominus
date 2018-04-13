@@ -37,8 +37,6 @@ class TempusDominusMixin(object):
 
         attr_html = ''
         for attr_key, attr_value in self.attrs.items():
-            if attr_key == "class":
-                print("CLASS", attr_value)
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
