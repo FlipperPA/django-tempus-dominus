@@ -1,9 +1,7 @@
 from json import dumps as json_dumps
 
-from django.forms.utils import flatatt
 from django.forms.widgets import DateInput, DateTimeInput, TimeInput
 from django.utils.safestring import mark_safe
-from django.utils.html import conditional_escape
 from django.utils.encoding import force_text
 
 
@@ -23,18 +21,18 @@ class TempusDominusMixin(object):
         <input type="{type}" name="{name}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}" id="{picker_id}">
         <script type="text/javascript">
             $(function () {{
-                $('#{picker_id}').datetimepicker({options});
+                $('#{picker_id}').datetimepicker({js_options});
             }});
         </script>
     """
 
-    def render(self, name, value, attrs=None):
-        self.attrs['class'] = 'form-control datetimepicker-input'
+    def __init__(self, attrs=None, options=None):
+        super().__init__(attrs)
+        # If a dictionary of options is passed, combine it with our pre-set js_options.
+        if type(options) is dict:
+            self.js_options = {**self.js_options, **options}
 
-        from pprint import pprint
-        print('SELF')
-        pprint(dir(self))
-
+    def render(self, name, value, attrs=None, options=None):
         context = super().get_context(name, value, attrs)
 
         attr_html = ''
@@ -49,7 +47,7 @@ class TempusDominusMixin(object):
         value_html = ''
         if context['widget']['value'] is not None:
             value_html = ' value="{}"'.format(context['widget']['value'])
-            self.options['date'] = context['widget']['value']
+            self.js_options['date'] = context['widget']['value']
 
         field_html = self.html_template.format(
             type=context['widget']['type'],
@@ -57,7 +55,7 @@ class TempusDominusMixin(object):
             name=context['widget']['name'],
             value=value_html,
             attrs=attr_html,
-            options=json_dumps(self.options),
+            js_options=json_dumps(self.js_options),
         )
 
         print(field_html)
@@ -65,16 +63,19 @@ class TempusDominusMixin(object):
 
 
 class DatePicker(TempusDominusMixin, DateInput):
-    options = {
+    js_options = {
         'format': 'YYYY-MM-DD',
+        'autoclose': True,
     }
 
 
 class DateTimePicker(TempusDominusMixin, DateTimeInput):
-    options = {
+    js_options = {
         'format': 'YYYY-MM-DD HH:mm:ss',
     }
 
 
-class TimePicker(TimeInput, TempusDominusMixin):
-    pass
+class TimePicker(TempusDominusMixin, TimeInput):
+    js_options = {
+        'format': 'HH:mm:ss',
+    }
