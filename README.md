@@ -17,20 +17,25 @@ pip install -e django-tempus-dominus
 
 Three widgets are provided, `DatePicker`, `DateTimePicker`, and `TimePicker`.
 
+In your Django form, you can use the widgets like this:
+
 ```python
-    from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
-    date_field = forms.DateField(
-        required=True,
-        widget=DatePicker(options={'asdf': '1234'}),
-    )
-    time_field = forms.TimeField(
-        required=True,
-        widget=TimePicker(options={'asdf': '1234'}),
-    )
-    datetime_field = forms.TimeField(
-        required=True,
-        widget=DateTimePicker(options={'asdf': '1234'}),
-    )
+from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
+
+date_field = forms.DateField(
+    required=True,
+    widget=DatePicker(
+        options={
+            'asdf': '1234',
+        }
+    ),
+)
+time_field = forms.TimeField(
+    widget=TimePicker(),
+)
+datetime_field = forms.TimeField(
+    widget=DateTimePicker(),
+)
 ```
 
 ## Maintainer
