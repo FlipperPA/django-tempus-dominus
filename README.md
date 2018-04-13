@@ -20,22 +20,38 @@ Three widgets are provided, `DatePicker`, `DateTimePicker`, and `TimePicker`.
 In your Django form, you can use the widgets like this:
 
 ```python
+from django import forms
 from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 
-date_field = forms.DateField(
-    required=True,
-    widget=DatePicker(
-        options={
-            'asdf': '1234',
-        }
-    ),
-)
-time_field = forms.TimeField(
-    widget=TimePicker(),
-)
-datetime_field = forms.TimeField(
-    widget=DateTimePicker(),
-)
+class MyForm(forms.Form):
+    date_field = forms.DateField(
+        required=True,
+        widget=DatePicker(
+            options={
+                'asdf': '1234',
+            }
+        ),
+    )
+    time_field = forms.TimeField(
+        widget=TimePicker(),
+    )
+    datetime_field = forms.TimeField(
+        widget=DateTimePicker(),
+    )
+```
+
+Then in your template, include jQuery, `{{ form.media }}`, and render the form:
+
+```html
+<html>
+<head>
+
+{{ form.media }}
+</head>
+<body>
+{{ form.as_p }}
+</body>
+</html>
 ```
 
 ## Maintainer
