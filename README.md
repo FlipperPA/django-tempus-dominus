@@ -45,7 +45,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 ```html
 <html>
 <head>
-
+<script crossorigin="anonymous" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 {{ form.media }}
 </head>
 <body>
