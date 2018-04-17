@@ -49,7 +49,7 @@ class MyForm(forms.Form):
     datetime_field = forms.DateTimeField(
         widget=DateTimePicker(
             options={
-                'minDate': (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')  # Tomorrow
+                'minDate': (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'),  # Tomorrow
                 'useCurrent': True,
                 'collapse': False,
             }
