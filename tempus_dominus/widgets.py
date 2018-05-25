@@ -18,7 +18,7 @@ class TempusDominusMixin(object):
         )
 
     html_template = """
-        <input type="{type}" name="{name}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}" id="{picker_id}">
+        <input type="{type}" name="{name}"{value}{attrs} data-toggle="datetimepicker" class="datetimepicker-input form-control" data-target="#{picker_id}" id="{picker_id}">
         <script type="text/javascript">
             $(function () {{
                 $('#{picker_id}').datetimepicker({js_options});
