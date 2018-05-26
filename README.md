@@ -76,6 +76,12 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 </html>
 ```
 
+## Change Log
+
+* 0.1.2: UX enhancement: auto-dismiss dialog if the input loses focus.
+* 0.1.1: Bug fixes.
+* 0.1.0: Initial release.
+
 ## Maintainer
 
 * Timothy Allen (https://github.com/FlipperPA)
