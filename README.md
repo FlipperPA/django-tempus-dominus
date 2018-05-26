@@ -79,3 +79,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 ## Maintainer
 
 * Timothy Allen (https://github.com/FlipperPA)
+
+### Contributors (Thank You!)
+
+* waymou (https://github.com/waymao)
