@@ -9,12 +9,12 @@ class TempusDominusMixin(object):
     class Media:
         css = {
             'all': (
-                '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css',
+                '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css',
             ),
         }
         js = (
             '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js',
-            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js',
         )
 
     html_template = """
