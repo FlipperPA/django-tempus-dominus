@@ -26,21 +26,17 @@ class TempusDominusMixin(object):
         </script>
     """
 
-    def __init__(self, attrs=None, options=None):
+    def __init__(self, attrs={'class': 'form-control datetimepicker-input'}, options=None):
         super().__init__(attrs)
         # If a dictionary of options is passed, combine it with our pre-set js_options.
         if type(options) is dict:
             self.js_options = {**self.js_options, **options}
 
-    def render(self, name, value, attrs=None, options=None):
+    def render(self, name, value, attrs={'class': 'form-control datetimepicker-input'}, options=None):
         context = super().get_context(name, value, attrs)
 
         attr_html = ''
         for attr_key, attr_value in self.attrs.items():
-            print(attr_key, attr_value)
-            if attr_key == "class":
-                attr_value = "form-control datetimepicker-input"
-            print(attr_key, attr_value)
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
@@ -66,7 +62,6 @@ class TempusDominusMixin(object):
 class DatePicker(TempusDominusMixin, DateInput):
     js_options = {
         'format': 'YYYY-MM-DD',
-        'autoclose': True,
     }
 
 
