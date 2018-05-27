@@ -37,6 +37,10 @@ class TempusDominusMixin(object):
 
         attr_html = ''
         for attr_key, attr_value in self.attrs.items():
+            print(attr_key, attr_value)
+            if attr_key == "class":
+                attr_value = "form-control datetimepicker-input"
+            print(attr_key, attr_value)
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
