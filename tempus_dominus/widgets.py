@@ -32,7 +32,7 @@ class TempusDominusMixin(object):
         if type(options) is dict:
             self.js_options = {**self.js_options, **options}
 
-    def render(self, name, value, attrs={'class': 'form-control datetimepicker-input'}, options=None):
+    def render(self, name, value, attrs={}, options=None):
         context = super().get_context(name, value, attrs)
 
         attr_html = ''
