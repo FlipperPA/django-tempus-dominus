@@ -15,8 +15,8 @@ class TempusDominusMixin(object):
             ),
         }
         js = (
-            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js',
-            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js'
+            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js',
         )
 
     html_template = """
@@ -74,7 +74,7 @@ class TempusDominusMixin(object):
             elif isinstance(self, TimePicker):
                 formats = 'TIME_INPUT_FORMATS'
             else:
-                formats='DATETIME_INPUT_FORMATS'
+                formats = 'DATETIME_INPUT_FORMATS'
             for format in get_format(formats):
                 try:
                     value = datetime.strptime(value, format)
