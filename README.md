@@ -78,6 +78,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.0.1.0: Upgrade to Tempus Dominus full release version `5.0.1`. Fix bug for populating initial values (thank you, @ianastewart).
 * 0.1.2: UX enhancement: auto-dismiss dialog if the input loses focus.
 * 0.1.1: Bug fixes.
 * 0.1.0: Initial release.
@@ -88,4 +89,5 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ### Contributors (Thank You!)
 
+* Ian Stewart (https://github.com/ianastewart)
 * waymou (https://github.com/waymao)
