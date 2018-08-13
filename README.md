@@ -30,7 +30,8 @@ from django import forms
 from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 
 class MyForm(forms.Form):
-    date_field = forms.DateField(
+    date_field = forms.DateField(widget=DatePicker())
+    date_field_required_with_min_max_date = forms.DateField(
         required=True,
         widget=DatePicker(
             options={
