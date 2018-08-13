@@ -46,7 +46,7 @@ class TempusDominusMixin(object):
 
         options = json_dumps(self.js_options)
         if context['widget']['value'] is not None:
-            # Append an option to set the datepicker's value using  a Javascript moment object
+            # Append an option to set the datepicker's value using a Javascript moment object
             options = options[:-1] + ', %s}' % self.moment_option(value)
 
         field_html = self.html_template.format(
