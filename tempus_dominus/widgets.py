@@ -17,7 +17,7 @@ class TempusDominusMixin(object):
             ),
         }
 
-        if (getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False)):
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
             moment = "moment-with-locales"
         else:
             moment = "moment"
@@ -50,7 +50,7 @@ class TempusDominusMixin(object):
                 key=attr_key,
                 value=attr_value,
             )
-        if (getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False)):
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
             self.js_options['locale'] = get_language()
 
         options = json_dumps(self.js_options)
@@ -104,7 +104,7 @@ class TempusDominusMixin(object):
 
 
 class DatePicker(TempusDominusMixin, DateInput):
-    if (getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False)):
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
         js_format = 'L'
     else:
         js_format = 'YYYY-MM-DD'
@@ -115,7 +115,7 @@ class DatePicker(TempusDominusMixin, DateInput):
 
 
 class DateTimePicker(TempusDominusMixin, DateTimeInput):
-    if (getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False)):
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
         js_format = 'L LTS'
     else:
         js_format = 'YYYY-MM-DD HH:mm:ss'
@@ -126,7 +126,7 @@ class DateTimePicker(TempusDominusMixin, DateTimeInput):
 
 
 class TimePicker(TempusDominusMixin, TimeInput):
-    if (getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False)):
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
         js_format = 'LTS'
     else:
         js_format = 'HH:mm:ss'
