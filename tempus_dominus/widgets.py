@@ -5,6 +5,8 @@ from django.forms.widgets import DateInput, DateTimeInput, TimeInput
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
 from django.utils.formats import get_format
+from django.utils.translation import get_language
+from django.conf import settings
 
 
 class TempusDominusMixin(object):
@@ -14,8 +16,13 @@ class TempusDominusMixin(object):
                 '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css',
             ),
         }
+
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+            moment = "moment-with-locales"
+        else:
+            moment = "moment"
         js = (
-            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js',
+            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/{moment}.min.js'.format(moment=moment),
             '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js',
         )
 
@@ -43,6 +50,8 @@ class TempusDominusMixin(object):
                 key=attr_key,
                 value=attr_value,
             )
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
+            self.js_options['locale'] = get_language()
 
         options = json_dumps(self.js_options)
         if context['widget']['value'] is not None:
@@ -95,18 +104,33 @@ class TempusDominusMixin(object):
 
 
 class DatePicker(TempusDominusMixin, DateInput):
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+        js_format = 'L'
+    else:
+        js_format = 'YYYY-MM-DD'
+
     js_options = {
-        'format': 'YYYY-MM-DD',
+        'format': js_format,
     }
 
 
 class DateTimePicker(TempusDominusMixin, DateTimeInput):
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+        js_format = 'L LTS'
+    else:
+        js_format = 'YYYY-MM-DD HH:mm:ss'
+
     js_options = {
-        'format': 'YYYY-MM-DD HH:mm:ss',
+        'format': js_format
     }
 
 
 class TimePicker(TempusDominusMixin, TimeInput):
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+        js_format = 'LTS'
+    else:
+        js_format = 'HH:mm:ss'
+
     js_options = {
-        'format': 'HH:mm:ss',
+        'format': js_format
     }

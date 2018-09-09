@@ -21,6 +21,8 @@ Three widgets are provided:
 * `DateTimePicker`, which defaults to `YYYY-MM-DD HH:mm:ss`
 * `TimePicker`, which defaults to `HH:mm:ss`
 
+If you set TEMPUS_DOMINUS_LOCALIZE in Django settings to True, widgets will be translated to browser language and use localised date and time formats
+
 In your Django form, you can use the widgets like this:
 
 ```python
