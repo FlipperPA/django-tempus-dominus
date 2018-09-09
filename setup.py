@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='django-tempus-dominus',
-    version="5.0.1.0",
+    version="5.0.1.1",
     description='A Django widget for the Tempus Dominus Bootstrap 4 DateTime picker.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -30,5 +30,8 @@ setup(
         'Framework :: Django :: 2.0',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-    ], install_requires=['django']
+    ],
+    install_requires=[
+        'django',
+    ],
 )
