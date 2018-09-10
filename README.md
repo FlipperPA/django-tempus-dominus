@@ -17,7 +17,7 @@ pip install -e django-tempus-dominus
 
 A Django setting is provided to use the browser's localized date and time configuration:
 
-* `TEMPUS_DOMINUS_LOCALIZE` (default: False): if True, widgets will be translated to the selected browser language and use the localized date and time formats.
+* `TEMPUS_DOMINUS_LOCALIZE` (default: `False`): if `True`, widgets will be translated to the selected browser language and use the localized date and time formats.
 
 Three widgets are provided:
 
