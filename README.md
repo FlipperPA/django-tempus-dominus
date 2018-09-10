@@ -15,15 +15,21 @@ pip install -e django-tempus-dominus
 
 ## Usage & Settings
 
-Three widgets are provided:
-
-* `DatePicker`, which defaults to `YYYY-MM-DD`
-* `DateTimePicker`, which defaults to `YYYY-MM-DD HH:mm:ss`
-* `TimePicker`, which defaults to `HH:mm:ss`
-
-A Django setting is provided for locaized date and time:
+A Django setting is provided to use the browser's localized date and time configuration:
 
 * `TEMPUS_DOMINUS_LOCALIZE` (default: False): if True, widgets will be translated to the selected browser language and use the localized date and time formats.
+
+Three widgets are provided:
+
+* `DatePicker`
+    * Defaults to `YYYY-MM-DD`
+    * Defaults to `L` if `TEMPUS_DOMINUS_LOCALIZE` is True
+* `DateTimePicker`
+    * Defaults to `YYYY-MM-DD HH:mm:ss`
+    * Defaults to `L LTS` if `TEMPUS_DOMINUS_LOCALIZE` is True
+* `TimePicker`
+    * Defaults to `HH:mm:ss`
+    * Defaults to `LTS` if `TEMPUS_DOMINUS_LOCALIZE` is True
 
 In your Django form, you can use the widgets like this:
 
@@ -83,6 +89,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.0.1.2: Documentation clean up.
 * 5.0.1.1: Option to l10n and i18n to all pickers (thank you, @AxTheB).
 * 5.0.1.0: Upgrade to Tempus Dominus full release version `5.0.1`. Fix bug for populating initial values (thank you, @ianastewart).
 * 0.1.2: UX enhancement: auto-dismiss dialog if the input loses focus.
