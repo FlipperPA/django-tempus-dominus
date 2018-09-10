@@ -23,13 +23,13 @@ Three widgets are provided:
 
 * `DatePicker`
     * Defaults to `YYYY-MM-DD`
-    * Defaults to `L` if `TEMPUS_DOMINUS_LOCALIZE` is True
+    * Defaults to `L` if `TEMPUS_DOMINUS_LOCALIZE` is `True`
 * `DateTimePicker`
     * Defaults to `YYYY-MM-DD HH:mm:ss`
-    * Defaults to `L LTS` if `TEMPUS_DOMINUS_LOCALIZE` is True
+    * Defaults to `L LTS` if `TEMPUS_DOMINUS_LOCALIZE` is `True`
 * `TimePicker`
     * Defaults to `HH:mm:ss`
-    * Defaults to `LTS` if `TEMPUS_DOMINUS_LOCALIZE` is True
+    * Defaults to `LTS` if `TEMPUS_DOMINUS_LOCALIZE` is `True`
 
 In your Django form, you can use the widgets like this:
 
