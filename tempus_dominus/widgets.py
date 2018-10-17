@@ -9,22 +9,27 @@ from django.utils.translation import get_language
 from django.conf import settings
 
 
-class TempusDominusMixin(object):
-    class Media:
-        css = {
-            'all': (
-                '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css',
-            ),
-        }
+class CDNMedia:
+    css = {
+        'all': (
+            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css',
+        ),
+    }
 
-        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
-            moment = "moment-with-locales"
-        else:
-            moment = "moment"
-        js = (
-            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/{moment}.min.js'.format(moment=moment),
-            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js',
-        )
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+        moment = "moment-with-locales"
+    else:
+        moment = "moment"
+    js = (
+        '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/{moment}.min.js'.format(moment=moment),
+        '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js',
+    )
+
+
+class TempusDominusMixin(object):
+
+    if getattr(settings, 'TEMPUS_DOMINUS_INCLUDE_ASSETS', True):
+        Media = CDNMedia
 
     html_template = """
         <input type="{type}" name="{name}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}" id="{picker_id}">
