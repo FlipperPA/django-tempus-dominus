@@ -1,5 +1,5 @@
 from datetime import datetime
-from json import dumps as json_dumps
+import json
 
 from django.forms.widgets import DateInput, DateTimeInput, TimeInput
 from django.utils.safestring import mark_safe
@@ -53,10 +53,11 @@ class TempusDominusMixin(object):
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
             self.js_options['locale'] = get_language()
 
-        options = json_dumps(self.js_options)
+        options = {}
+        options.update(self.js_options)
         if context['widget']['value'] is not None:
             # Append an option to set the datepicker's value using a Javascript moment object
-            options = options[:-1] + ', %s}' % self.moment_option(value)
+            options.update(self.moment_option(value))
 
         field_html = self.html_template.format(
             type=context['widget']['type'],
@@ -64,14 +65,14 @@ class TempusDominusMixin(object):
             name=context['widget']['name'],
             value='',
             attrs=attr_html,
-            js_options=options,
+            js_options=json.dumps(options),
         )
 
         return mark_safe(force_text(field_html))
 
     def moment_option(self, value):
         """
-        Returns an option string to set the default date and/or time using a Javascript moment object.
+        Returns an option dict to set the default date and/or time using a Javascript moment object.
         When a form is first instantiated, value is a date, time or datetime object,
         but after a form has been submitted with an error and re-rendered, value contains a formatted string that
         we need to parse back to a date, time or datetime object.
@@ -91,16 +92,9 @@ class TempusDominusMixin(object):
                 except (ValueError, TypeError):
                     continue
             else:
-                return ''
-        option = ''
-        if isinstance(self, DatePicker) or isinstance(self, DateTimePicker):
-            # NB. moment months are zero indexed!
-            option = 'year: {}, month: {}, day: {}'.format(value.year, value.month - 1, value.day)
-        if isinstance(self, TimePicker) or isinstance(self, DateTimePicker):
-            if option:
-                option += ', '
-            option += 'hour: {}, minute: {}, second: {}'.format(value.hour, value.minute, value.second)
-        return 'defaultDate: moment({%s})' % option
+                return {}
+
+        return {'defaultDate': value.isoformat()}
 
 
 class DatePicker(TempusDominusMixin, DateInput):
