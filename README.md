@@ -13,6 +13,8 @@ git clone git+https://github.com/FlipperPA/django-tempus-dominus.git
 pip install -e django-tempus-dominus
 ```
 
+Add `tempus_dominus` to `INSTALLED_APPS` in your Django settings.
+
 ## Usage & Settings
 
 A Django setting is provided to use the browser's localized date and time configuration:

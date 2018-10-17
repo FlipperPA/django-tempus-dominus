@@ -7,6 +7,7 @@ from django.utils.encoding import force_text
 from django.utils.formats import get_format
 from django.utils.translation import get_language
 from django.conf import settings
+from django.template.loader import render_to_string
 
 
 class TempusDominusMixin(object):
@@ -25,15 +26,6 @@ class TempusDominusMixin(object):
             '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/{moment}.min.js'.format(moment=moment),
             '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js',
         )
-
-    html_template = """
-        <input type="{type}" name="{name}"{value}{attrs} data-toggle="datetimepicker" data-target="#{picker_id}" id="{picker_id}">
-        <script type="text/javascript">
-            $(function () {{
-                $('#{picker_id}').datetimepicker({js_options});
-            }});
-        </script>
-    """
 
     def __init__(self, attrs={'class': 'form-control datetimepicker-input'}, options=None):
         super().__init__(attrs)
@@ -58,14 +50,13 @@ class TempusDominusMixin(object):
             # Append an option to set the datepicker's value using a Javascript moment object
             options = options[:-1] + ', %s}' % self.moment_option(value)
 
-        field_html = self.html_template.format(
-            type=context['widget']['type'],
-            picker_id=context['widget']['attrs']['id'],
-            name=context['widget']['name'],
-            value='',
-            attrs=attr_html,
-            js_options=options,
-        )
+        field_html = render_to_string('tempus_dominus/widget.html', {
+            'type': context['widget']['type'],
+            'picker_id': context['widget']['attrs']['id'],
+            'name': context['widget']['name'],
+            'attrs': mark_safe(attr_html),
+            'js_options': mark_safe(options),
+        })
 
         return mark_safe(force_text(field_html))
 
