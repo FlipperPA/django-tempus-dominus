@@ -11,5 +11,5 @@ TEMPLATES = [
 ]
 
 INSTALLED_APPS = settings.INSTALLED_APPS + [
-  'tempus_dominus',
+    'tempus_dominus',
 ]

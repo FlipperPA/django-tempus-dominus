@@ -9,7 +9,7 @@ Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 
 * From source:
 
 ```python
-git clone git+https://github.com/FlipperPA/django-tempus-dominus.git
+git clone https://github.com/FlipperPA/django-tempus-dominus.git
 pip install -e django-tempus-dominus
 ```
 
@@ -110,3 +110,4 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * Jake Bell (https://github.com/theunraveler)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
 * waymou (https://github.com/waymao)
+* Katherine Dey (https://github.com/deyspring)
