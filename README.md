@@ -103,14 +103,15 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 * Timothy Allen (https://github.com/FlipperPA)
 
-### Contributors (Thank You!)
+### Contributors & DjangoCon US Sprinters (Thank You!)
 
 * Bryan Collazo (https://github.com/bcollazo)
 * Donna St. Louis (https://github.com/dcstlouis)
 * Ian Stewart (https://github.com/ianastewart)
+* Jake Bell (https://github.com/theunraveler)
 * John Carroll (https://github.com/johnnyporkchops)
 * Kenneth Love (https://github.com/kennethlove)
 * Kevan Swanberg (https://github.com/kevswanberg)
-* Jake Bell (https://github.com/theunraveler)
+* Tiffany Huang (https://github.com/tiff8433)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
 * waymou (https://github.com/waymao)
