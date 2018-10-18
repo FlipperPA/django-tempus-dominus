@@ -8,13 +8,15 @@ class DateFieldForm(forms.Form):
 
 
 class MinMaxDateFieldForm(forms.Form):
-    """Test form for DatePicker widget."""
-    date_field = forms.DateField(widget=DatePicker(
-        options={
-            'minDate': '2009-01-20',
-            'maxDate': '2017-01-20',
-        }
-    ))
+    """Test form for DatePicker widget with minDate and maxDate options."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['date_field'] = forms.DateField(widget=DatePicker(
+            options={
+                'minDate': '2009-01-20',
+                'maxDate': '2017-01-20',
+            }
+        ))
 
 
 class TimeFieldForm(forms.Form):
