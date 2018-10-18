@@ -33,9 +33,11 @@ class TempusDominusMixin:
         Media = CDNMedia
 
     def __init__(self, attrs={'class': 'form-control datetimepicker-input'}, options=None):
-        super().__init__(attrs)
+        super().__init__()
         # If a dictionary of options is passed, combine it with our pre-set js_options.
-        if type(options) is dict:
+        self.js_options = {'format': self.get_js_format()}
+
+        if isinstance(options, dict):
             self.js_options = {**self.js_options, **options}
 
     def render(self, name, value, attrs={}, renderer=None):
@@ -92,35 +94,32 @@ class TempusDominusMixin:
 
         return {'defaultDate': value.isoformat()}
 
+    def get_js_format(self):
+        raise NotImplementedError
+
 
 class DatePicker(TempusDominusMixin, DateInput):
-    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
-        js_format = 'L'
-    else:
-        js_format = 'YYYY-MM-DD'
-
-    js_options = {
-        'format': js_format,
-    }
+    def get_js_format(self):
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+            js_format = 'L'
+        else:
+            js_format = 'YYYY-MM-DD'
+        return js_format
 
 
 class DateTimePicker(TempusDominusMixin, DateTimeInput):
-    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
-        js_format = 'L LTS'
-    else:
-        js_format = 'YYYY-MM-DD HH:mm:ss'
-
-    js_options = {
-        'format': js_format
-    }
+    def get_js_format(self):
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+            js_format = 'L LTS'
+        else:
+            js_format = 'YYYY-MM-DD HH:mm:ss'
+        return js_format
 
 
 class TimePicker(TempusDominusMixin, TimeInput):
-    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
-        js_format = 'LTS'
-    else:
-        js_format = 'HH:mm:ss'
-
-    js_options = {
-        'format': js_format
-    }
+    def get_js_format(self):
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+            js_format = 'LTS'
+        else:
+            js_format = 'HH:mm:ss'
+        return js_format
