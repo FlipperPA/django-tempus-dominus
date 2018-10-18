@@ -1,0 +1,6 @@
+<input type="{{ type }}" name="{{ name }}"{{ attrs }} data-toggle="datetimepicker" data-target="#{{ picker_id }}" id="{{ picker_id }}">
+<script type="text/javascript">
+    $(function () {{
+        $('#{{ picker_id }}').datetimepicker({{ js_options }});
+    }});
+</script>
