@@ -1,11 +1,16 @@
+import pytest
+
 from .forms import DateFieldForm, TimeFieldForm, DateTimeFieldForm
 
 
-def test_date_field_form():
+
+@pytest.mark.parametrize("form_class", [
+    DateFieldForm,
+    TimeFieldForm,
+    DateTimeFieldForm,
+])
+def test_forms_render(form_class):
     """
-    Test to see ...
+    Smoke test that forms render
     """
-    form = DateFieldForm()
-    assert 0
-    # from IPython import embed
-    # embed()
+    assert form_class().as_p()
