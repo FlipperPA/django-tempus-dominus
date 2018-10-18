@@ -28,9 +28,6 @@ class TimeFieldForm(forms.Form):
         self.fields['time_field'] = forms.TimeField(widget=TimePicker())
 
 
-
 class DateTimeFieldForm(forms.Form):
     """Test form for DateTimePicker widget."""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['datetime_field'] = forms.DateTimeField(widget=DateTimePicker())
+    datetime_field = forms.DateTimeField(widget=DateTimePicker)
