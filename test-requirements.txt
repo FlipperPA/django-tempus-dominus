@@ -1,2 +1,2 @@
 pytest-cov
--e . # installs from this location 
+-e . # installs Django Tempus Dominus from this directory
