@@ -1,0 +1,5 @@
+Django>=2.1,<2.2
+coverage
+
+# Installs django-tempus-dominus from the parent path
+-e ..
