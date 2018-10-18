@@ -63,3 +63,11 @@ htmlcov/
 
 # pytest files
 .pytest_cache/
+
+# venv files
+bin/
+include/
+lib/
+share/
+pip-selfcheck.json
+pyvenv.cfg
