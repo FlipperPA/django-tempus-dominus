@@ -11,7 +11,6 @@ class TimeFieldForm(forms.Form):
     """Test form for TimePicker widget."""
     time_field = forms.TimeField(widget=TimePicker())
 
-
 class DateTimeFieldForm(forms.Form):
     """Test form for DateTimePicker widget."""
-    datetime_field = forms.DateTimeField(widget=DateTimePicker())
+    datetime_field = forms.DateTimeField(widget=DateTimePicker)
