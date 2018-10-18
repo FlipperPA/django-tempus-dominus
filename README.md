@@ -103,6 +103,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ### Contributors (Thank You!)
 
+* Donna St. Louis (https://github.com/dcstlouis)
 * Ian Stewart (https://github.com/ianastewart)
 * Jake Bell (https://github.com/theunraveler)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
