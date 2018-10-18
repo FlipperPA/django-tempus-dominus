@@ -1,9 +1,9 @@
 from django.test import override_settings
 from django.conf import settings
 
-settings.configure({
-    'TEMPUS_DOMINUS_LOCALIZE': False,
-})
+# settings.configure({
+#     'TEMPUS_DOMINUS_LOCALIZE': False,
+# })
 
 from .forms import DateFieldForm, TimeFieldForm, DateTimeFieldForm
 

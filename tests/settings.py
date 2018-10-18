@@ -1,0 +1,2 @@
+SECRET_KEY = 'tests'
+TEMPUS_DOMINUS_LOCALIZE = False
