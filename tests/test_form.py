@@ -1,12 +1,13 @@
 import pytest
 
-from .forms import DateFieldForm, TimeFieldForm, DateTimeFieldForm
+from .forms import DateFieldForm, TimeFieldForm, DateTimeFieldForm, MinMaxDateFieldForm
 
 
 @pytest.mark.parametrize("form_class", [
     DateFieldForm,
     TimeFieldForm,
     DateTimeFieldForm,
+    MinMaxDateFieldForm,
 ])
 def test_forms_render(form_class):
     """
