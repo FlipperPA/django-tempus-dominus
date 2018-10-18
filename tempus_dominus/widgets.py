@@ -27,7 +27,7 @@ class CDNMedia:
     )
 
 
-class TempusDominusMixin(object):
+class TempusDominusMixin:
 
     if getattr(settings, 'TEMPUS_DOMINUS_INCLUDE_ASSETS', True):
         Media = CDNMedia
