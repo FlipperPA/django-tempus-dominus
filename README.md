@@ -9,7 +9,7 @@ Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 
 * From source:
 
 ```python
-git clone git+https://github.com/FlipperPA/django-tempus-dominus.git
+git clone https://github.com/FlipperPA/django-tempus-dominus.git
 pip install -e django-tempus-dominus
 ```
 
