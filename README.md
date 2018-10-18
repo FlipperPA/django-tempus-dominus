@@ -13,11 +13,14 @@ git clone git+https://github.com/FlipperPA/django-tempus-dominus.git
 pip install -e django-tempus-dominus
 ```
 
+Add `tempus_dominus` to `INSTALLED_APPS` in your Django settings.
+
 ## Usage & Settings
 
-A Django setting is provided to use the browser's localized date and time configuration:
+The following settings are available:
 
 * `TEMPUS_DOMINUS_LOCALIZE` (default: `False`): if `True`, widgets will be translated to the selected browser language and use the localized date and time formats.
+* `TEMPUS_DOMINUS_INCLUDE_ASSETS` (default: `True`): if `True`, loads Tempus Dominus and `moment` JS and CSS from Cloudflare's CDN, otherwise loading the JS and CSS are up to you.
 
 Three widgets are provided:
 
@@ -102,6 +105,8 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ### Contributors (Thank You!)
 
+* Donna St. Louis (https://github.com/dcstlouis)
 * Ian Stewart (https://github.com/ianastewart)
+* Jake Bell (https://github.com/theunraveler)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
 * waymou (https://github.com/waymao)
