@@ -63,3 +63,6 @@ htmlcov/
 
 # pytest files
 .pytest_cache/
+
+venv/
+.cache/
