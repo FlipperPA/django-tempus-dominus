@@ -7,6 +7,16 @@ class DateFieldForm(forms.Form):
     date_field = forms.DateField(widget=DatePicker())
 
 
+class MinMaxDateFieldForm(forms.Form):
+    """Test form for DatePicker widget."""
+    date_field = forms.DateField(widget=DatePicker(
+        options={
+            'minDate': '2009-01-20',
+            'maxDate': '2017-01-20',
+        }
+    ))
+
+
 class TimeFieldForm(forms.Form):
     """Test form for TimePicker widget."""
     time_field = forms.TimeField(widget=TimePicker())
