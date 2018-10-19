@@ -115,3 +115,4 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * Tiffany Huang (https://github.com/tiff8433)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
 * waymou (https://github.com/waymao)
+* Katherine Dey (https://github.com/deyspring)

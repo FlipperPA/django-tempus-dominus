@@ -1,2 +1,4 @@
 pytest-cov
--e . # installs from this location 
+pytest-django
+django_coverage_plugin==1.6.0
+-e . # installs Django Tempus Dominus from this directory
