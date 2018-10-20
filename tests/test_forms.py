@@ -42,7 +42,12 @@ def test_datetime_form_localization(settings):
 
 
 def test_form_media():
+    """Check that the widget media makes it up to the form"""
     form = forms.DateTimeFieldForm()
     cdn_media = widgets.cdn_media()
+
+    # I'm not a fan of testing private methods but there's no
+    # other way to access the css and js members that I could
+    # find. Please fix if you find one.
     assert set(form.media._css['all']) == set(cdn_media._css['all'])
     assert set(form.media._js) == set(cdn_media._js)
