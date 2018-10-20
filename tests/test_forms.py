@@ -39,3 +39,10 @@ def test_datetime_form_localization(settings):
         widgets.DateTimePicker
     )
     assert widget.js_options == {'format': 'L LTS'}
+
+
+def test_form_media():
+    form = forms.DateTimeFieldForm()
+    cdn_media = widgets.cdn_media()
+    assert set(form.media._css['all']) == set(cdn_media._css['all'])
+    assert set(form.media._js) == set(cdn_media._js)
