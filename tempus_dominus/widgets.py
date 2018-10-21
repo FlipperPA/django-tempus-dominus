@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django import forms
-from django.forms.widgets import DateInput, DateTimeInput, TimeInput
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
 from django.utils.formats import get_format
@@ -45,7 +44,7 @@ class TempusDominusMixin:
 
     @property
     def media(self):
-        if getattr(settings, 'TEMPUS_DOMINU_INCLUDE_ASSESTS', True):
+        if getattr(settings, 'TEMPUS_DOMINUS_INCLUDE_ASSESTS', True):
             return cdn_media()
 
     def render(self, name, value, attrs={}, renderer=None):
@@ -106,7 +105,7 @@ class TempusDominusMixin:
         raise NotImplementedError
 
 
-class DatePicker(TempusDominusMixin, DateInput):
+class DatePicker(TempusDominusMixin, forms.widgets.DateInput):
     def get_js_format(self):
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
             js_format = 'L'
@@ -115,7 +114,7 @@ class DatePicker(TempusDominusMixin, DateInput):
         return js_format
 
 
-class DateTimePicker(TempusDominusMixin, DateTimeInput):
+class DateTimePicker(TempusDominusMixin, forms.widgets.DateTimeInput):
     def get_js_format(self):
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
             js_format = 'L LTS'
@@ -124,7 +123,7 @@ class DateTimePicker(TempusDominusMixin, DateTimeInput):
         return js_format
 
 
-class TimePicker(TempusDominusMixin, TimeInput):
+class TimePicker(TempusDominusMixin, forms.widgets.TimeInput):
     def get_js_format(self):
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
             js_format = 'LTS'
