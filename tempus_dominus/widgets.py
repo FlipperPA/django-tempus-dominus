@@ -1,6 +1,6 @@
 from datetime import datetime
-import json
 
+from django import forms
 from django.forms.widgets import DateInput, DateTimeInput, TimeInput
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
@@ -10,22 +10,26 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 
-class CDNMedia:
-    def __init__(self):
-        self.css = {
-            'all': (
-                '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css',
-            ),
-        }
+def cdn_media():
+    css = {
+        'all': (
+            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css',
+        ),
+    }
 
-        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
-            moment = "moment-with-locales"
-        else:
-            moment = "moment"
-        self.js = (
-            '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/{moment}.min.js'.format(moment=moment),
-            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js',
-        )
+    if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False):
+        moment = "moment-with-locales"
+    else:
+        moment = "moment"
+
+    js = (
+        ('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/'
+         '{moment}.min.js'.format(moment=moment)),
+        ('//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/'
+         '5.0.1/js/tempusdominus-bootstrap-4.min.js'),
+    )
+
+    return forms.Media(css=css, js=js)
 
 
 class TempusDominusMixin:
@@ -33,14 +37,16 @@ class TempusDominusMixin:
     def __init__(self, attrs={'class': 'form-control datetimepicker-input'}, options=None):
         super().__init__()
 
-        if getattr(settings, 'TEMPUS_DOMINUS_INCLUDE_ASSETS', True):
-            self.Media = CDNMedia()
-
         # If a dictionary of options is passed, combine it with our pre-set js_options.
         self.js_options = {'format': self.get_js_format()}
 
         if isinstance(options, dict):
             self.js_options = {**self.js_options, **options}
+
+    @property
+    def media(self):
+        if getattr(settings, 'TEMPUS_DOMINU_INCLUDE_ASSESTS', True):
+            return cdn_media()
 
     def render(self, name, value, attrs={}, renderer=None):
         context = super().get_context(name, value, attrs)
