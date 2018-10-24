@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 from django import forms
 from django.utils.safestring import mark_safe
@@ -70,7 +71,7 @@ class TempusDominusMixin:
             'picker_id': context['widget']['attrs']['id'],
             'name': context['widget']['name'],
             'attrs': mark_safe(attr_html),
-            'js_options': mark_safe(options),
+            'js_options': mark_safe(json.dumps(options)),
         })
 
         return mark_safe(force_text(field_html))
