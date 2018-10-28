@@ -92,6 +92,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.0.1.4: Include template in the MANIFEST.in file.
 * 5.0.1.3: Add setting to exclude CDN CSS and JS assets. Add initial test suite.
 * 5.0.1.2: Documentation clean up.
 * 5.0.1.1: Option to l10n and i18n to all pickers.
@@ -115,6 +116,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * Kenneth Love (https://github.com/kennethlove)
 * Kevan Swanberg (https://github.com/kevswanberg)
 * Ryan Sullivan (https://github.com/rgs258)
+* Stéphane "Twidi" Angel (https://github.com/twidi)
 * Tiffany Huang (https://github.com/tiff8433)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
 * waymou (https://github.com/waymao)
