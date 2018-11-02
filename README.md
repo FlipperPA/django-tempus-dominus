@@ -92,6 +92,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.0.1.5: Fix to ensure options are passed in proper JSON.
 * 5.0.1.4: Include template in the MANIFEST.in file.
 * 5.0.1.3: Add setting to exclude CDN CSS and JS assets. Add initial test suite.
 * 5.0.1.2: Documentation clean up.
