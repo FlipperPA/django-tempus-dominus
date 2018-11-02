@@ -77,16 +77,30 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ```HTML+Django
 <html>
-    <head>
-        <script crossorigin="anonymous" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        {{ form.media }}
-    </head>
-<body>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
-</body>
+  <head>
+    {# Include FontAwesome; required for icon display #}
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    {# Include Bootstrap 4 and jQuery #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    {# Django Tempus Dominus assets are included in `{{ form.media }}` #}
+    {{ form.media }}
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
 ```
 
