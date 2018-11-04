@@ -52,7 +52,7 @@ class TempusDominusMixin:
         context = super().get_context(name, value, attrs)
 
         attr_html = ''
-        for attr_key, attr_value in self.attrs.items():
+        for attr_key, attr_value in attrs.items():
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
