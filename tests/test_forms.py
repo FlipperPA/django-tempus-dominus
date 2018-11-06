@@ -51,3 +51,15 @@ def test_form_media():
     # find. Please fix if you find one.
     assert set(form.media._css['all']) == set(cdn_media._css['all'])
     assert set(form.media._js) == set(cdn_media._js)
+
+
+def test_disabled():
+    form = forms.DateFieldDisabled()
+    output = form.as_p()
+    assert 'disabled' in output
+
+
+def test_not_required():
+    form = forms.DateFieldNotRequired()
+    output = form.as_p()
+    assert 'required' not in output
