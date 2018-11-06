@@ -116,22 +116,22 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * 0.1.1: Bug fixes.
 * 0.1.0: Initial release.
 
-## Maintainer
+## Maintainers
 
 * Timothy Allen (https://github.com/FlipperPA)
+* Ian Stewart (https://github.com/ianastewart)
 
 ### Contributors & DjangoCon US Sprinters (Thank You!)
 
-* Bryan Collazo (https://github.com/bcollazo)
-* Donna St. Louis (https://github.com/dcstlouis)
-* Ian Stewart (https://github.com/ianastewart)
+* Stéphane "Twidi" Angel (https://github.com/twidi)
 * Jake Bell (https://github.com/theunraveler)
 * John Carroll (https://github.com/johnnyporkchops)
+* Bryan Collazo (https://github.com/bcollazo)
 * Katherine Dey (https://github.com/deyspring)
-* Kenneth Love (https://github.com/kennethlove)
-* Kevan Swanberg (https://github.com/kevswanberg)
-* Ryan Sullivan (https://github.com/rgs258)
-* Stéphane "Twidi" Angel (https://github.com/twidi)
 * Tiffany Huang (https://github.com/tiff8433)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
+* Kenneth Love (https://github.com/kennethlove)
+* Donna St. Louis (https://github.com/dcstlouis)
+* Ryan Sullivan (https://github.com/rgs258)
+* Kevan Swanberg (https://github.com/kevswanberg)
 * waymou (https://github.com/waymao)
