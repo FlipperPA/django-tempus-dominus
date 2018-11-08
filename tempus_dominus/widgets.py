@@ -54,7 +54,7 @@ class TempusDominusMixin:
         attr_html = ''
         # set standard attributes but not if they have been overrideden by custome attributes
         for attr_key, attr_value in self.attrs.items():
-            if not attrs.key in attrs:
+            if not attr_key in attrs:
                 attr_html += ' {key}="{value}"'.format(
                     key=attr_key,
                     value=attr_value,
