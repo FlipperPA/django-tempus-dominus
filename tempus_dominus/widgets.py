@@ -58,15 +58,16 @@ class TempusDominusMixin:
         # context['attrs'] contains a merge of self.attrs and attrs
         # NB If crispy forms is used, it will contain 'class': 'datepicker form-control' for DatePicker widget
 
-        cls = context['attrs']['class']
+        all_attrs = context['widget']['attrs']
+        cls = all_attrs['class']
         if not 'form-control' in cls:
             cls = 'form-control ' + cls
         # Add the attribute that makes datepicker popup close when focus changes
         cls += ' datetimepicker-input'
-        context['attrs']['class'] = cls
+        all_attrs['class'] = cls
 
         attr_html = ''
-        for attr_key, attr_value in context['attrs']:
+        for attr_key, attr_value in all_attrs:
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
