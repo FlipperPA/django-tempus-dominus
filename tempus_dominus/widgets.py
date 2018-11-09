@@ -34,7 +34,7 @@ def cdn_media():
 
 class TempusDominusMixin:
 
-    def __init__(self, attrs={'class': 'form-control datetimepicker-input'}, options=None):
+    def __init__(self, attrs={}, options=None):
         super().__init__()
 
         # If a dictionary of options is passed, combine it with our pre-set js_options.
@@ -42,6 +42,8 @@ class TempusDominusMixin:
 
         if isinstance(options, dict):
             self.js_options = {**self.js_options, **options}
+        # save any attributes that user defined on the widget in self
+        self.attrs = attrs
 
     @property
     def media(self):
@@ -51,20 +53,25 @@ class TempusDominusMixin:
     def render(self, name, value, attrs={}, renderer=None):
         context = super().get_context(name, value, attrs)
 
+        # self.attrs = user-defined attributes from __init__
+        # attrs = attributes added for rendering.
+        # context['attrs'] contains a merge of self.attrs and attrs
+        # NB If crispy forms is used, it will contain 'class': 'datepicker form-control' for DatePicker widget
+
+        cls = context['attrs']['class']
+        if not 'form-control' in cls:
+            cls = 'form-control ' + cls
+        # Add the attribute that makes datepicker popup close when focus changes
+        cls += ' datetimepicker-input'
+        context['attrs']['class'] = cls
+
         attr_html = ''
-        # set standard attributes but not if they have been overrideden by custome attributes
-        for attr_key, attr_value in self.attrs.items():
-            if not attr_key in attrs:
-                attr_html += ' {key}="{value}"'.format(
-                    key=attr_key,
-                    value=attr_value,
-                )
-        # add custom attributes
-        for attr_key, attr_value in attrs.items():
+        for attr_key, attr_value in context['attrs']:
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
             )
+
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
             self.js_options['locale'] = get_language()
 
