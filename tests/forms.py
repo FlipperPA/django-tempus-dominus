@@ -37,16 +37,18 @@ class DateFieldNotRequiredForm(forms.Form):
     date_field_not_req = forms.DateField(widget=TimePicker, required=False)
 
 
-class DateFieldPrependForm(forms.Form):
+class DateFieldPrependLargeForm(forms.Form):
     """Test form with prepended icon."""
     date_field = forms.DateField(widget=DatePicker(
-        attrs={'prepend': 'fa fa-calendar'}
+        attrs={'prepend': 'fa fa-calendar',
+               'size': 'large'}
     ))
 
-class TimeFieldAppendForm(forms.Form):
+class TimeFieldAppendSmallForm(forms.Form):
     """Test form with appended icon. """
     time_field = forms.TimeField(widget=DatePicker(
-        attrs={'append': 'fa fa-clock'}
+        attrs={'append': 'fa fa-clock',
+               'size': 'small'}
     ))
 
 class DateTimeFieldNoToggleForm(forms.Form):

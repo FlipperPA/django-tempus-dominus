@@ -6,7 +6,6 @@ from . import forms
 from tempus_dominus import widgets
 
 
-
 @pytest.mark.parametrize("form_class", [
     forms.DateFieldForm,
     forms.TimeFieldForm,
@@ -19,15 +18,15 @@ def test_forms_render(form_class):
     assert form_class().as_p()
 
 
-def test_render_moment_unlocalized(settings):
+def test_render_moment_unlocalized():
     form = forms.DateTimeFieldForm()
     widget = form.fields['datetime_field'].widget
     assert isinstance(
         widget,
         widgets.DateTimePicker
     )
-    #assert widget.js_options == {'format': 'YYYY-MM-DD HH:mm:ss'}
     assert 'YYYY-MM-DD HH:mm:ss' in widget.js_options['format']
+
 
 def test_datetime_form_localization(settings):
     settings.TEMPUS_DOMINUS_LOCALIZE = True
@@ -38,8 +37,8 @@ def test_datetime_form_localization(settings):
         widget,
         widgets.DateTimePicker
     )
-    #assert widget.js_options == {'format': 'L LTS'}
     assert 'L LTS' in widget.js_options['format']
+
 
 def test_form_media():
     """Check that the widget media makes it up to the form"""
@@ -69,26 +68,20 @@ def test_required_not_in_output():
 
 
 def test_prepend():
-    output = forms.DateFieldPrependForm().as_p()
+    output = forms.DateFieldPrependLargeForm().as_p()
     assert 'prepend' in output
     assert 'fa fa-calendar' in output
+    assert '-lg' in output
 
 
 def test_append():
-    output = forms.TimeFieldAppendForm().as_p()
+    output = forms.TimeFieldAppendSmallForm().as_p()
     assert 'append' in output
     assert 'fa fa-clock' in output
+    assert '-sm' in output
 
 
 def test_no_toggle():
     output = forms.DateTimeFieldNoToggleForm().as_p()
     assert 'datatoggle' not in output
-
-
-def test_field_with_value():
-    date_value = '2018-11-9'
-    form = forms.DateFieldForm()
-    form.fields['date_field'].value = date_value
-    output = form.as_p()
-    assert date_value in output
 
