@@ -1,6 +1,19 @@
-<input type="{{ type }}" name="{{ name }}"{{ attrs }} data-toggle="datetimepicker" data-target="#{{ picker_id }}" id="{{ picker_id }}">
-<script type="text/javascript">
-    $(function () {{
+<div class="input-group">
+  {% if prepend %}
+    <div class="input-group-prepend" data-target="#{{ picker_id }}" {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
+      <div class="input-group-text"><i class="{{ prepend }}"></i></div>
+    </div>
+  {% endif %}
+  <input type="{{ type }}" name="{{ name }}"{{ attrs }} {% if input_toggle %}data-toggle="datetimepicker"{% endif %}
+         data-target="#{{ picker_id }}" id="{{ picker_id }}">
+  {% if append %}
+    <div class="input-group-append" data-target="#{{ picker_id }}" {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
+        <div class="input-group-text"><i class="{{ append }}"></i></div>
+    </div>
+  {% endif %}
+</div>
+  <script type="text/javascript">
+    $(function () {
         $('#{{ picker_id }}').datetimepicker({{ js_options }});
-    }});
+    });
 </script>

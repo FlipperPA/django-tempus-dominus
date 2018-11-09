@@ -67,11 +67,24 @@ class TempusDominusMixin:
         all_attrs['class'] = cls
 
         attr_html = ''
+        input_toggle = True
+        icon_toggle = True
+        append = ''
+        prepend = ''
         for attr_key, attr_value in all_attrs.items():
-            attr_html += ' {key}="{value}"'.format(
-                key=attr_key,
-                value=attr_value,
-            )
+            if attr_key == 'prepend':
+                prepend = attr_value
+            elif attr_key == 'append':
+                append = attr_value
+            elif attr_key == 'input_toggle':
+                input_toggle = attr_value
+            elif attr_key == 'icon_toggle':
+                icon_toggle = attr_value
+            else:
+                attr_html += ' {key}="{value}"'.format(
+                    key=attr_key,
+                    value=attr_value,
+                )
 
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
             self.js_options['locale'] = get_language()
@@ -88,6 +101,10 @@ class TempusDominusMixin:
             'name': context['widget']['name'],
             'attrs': mark_safe(attr_html),
             'js_options': mark_safe(json.dumps(options)),
+            'prepend': prepend,
+            'append': append,
+            'icon_toggle': icon_toggle,
+            'input_toggle': input_toggle,
         })
 
         return mark_safe(force_text(field_html))
