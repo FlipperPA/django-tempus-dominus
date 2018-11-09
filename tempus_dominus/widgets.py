@@ -67,7 +67,7 @@ class TempusDominusMixin:
         all_attrs['class'] = cls
 
         attr_html = ''
-        for attr_key, attr_value in all_attrs:
+        for attr_key, attr_value in all_attrs.items():
             attr_html += ' {key}="{value}"'.format(
                 key=attr_key,
                 value=attr_value,
