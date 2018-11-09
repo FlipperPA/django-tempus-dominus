@@ -84,6 +84,10 @@ class TempusDominusMixin:
                 input_toggle = attr_value
             elif attr_key == 'icon_toggle':
                 icon_toggle = attr_value
+            elif attr_key == 'size':
+                size = attr_value
+            elif attr_key == 'icon_toggle':
+                icon_toggle = attr_value
             else:
                 attr_html += ' {key}="{value}"'.format(
                     key=attr_key,
@@ -109,8 +113,8 @@ class TempusDominusMixin:
             'append': append,
             'icon_toggle': icon_toggle,
             'input_toggle': input_toggle,
+            'size': size,
         })
-
         return mark_safe(force_text(field_html))
 
     def moment_option(self, value):
