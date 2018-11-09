@@ -34,43 +34,47 @@ def cdn_media():
 
 class TempusDominusMixin:
 
-    def __init__(self, attrs={}, options=None):
+    def __init__(self, attrs=None, options=None):
         super().__init__()
 
+        # Set default options to include a clock item, otherwise datetimepicker shows no icon to switch intto time mode
+        self.js_options = {'format': self.get_js_format(),
+                           'icons': {'time': 'fa fa-clock'}
+                           }
         # If a dictionary of options is passed, combine it with our pre-set js_options.
-        self.js_options = {'format': self.get_js_format()}
-
         if isinstance(options, dict):
             self.js_options = {**self.js_options, **options}
-        # save any attributes that user defined on the widget in self
-        self.attrs = attrs
+        # save any additional attributes that the user defined in self
+        self.attrs = attrs or {}
 
     @property
     def media(self):
         if getattr(settings, 'TEMPUS_DOMINUS_INCLUDE_ASSESTS', True):
             return cdn_media()
 
-    def render(self, name, value, attrs={}, renderer=None):
+    def render(self, name, value, attrs=None, renderer=None):
         context = super().get_context(name, value, attrs)
 
         # self.attrs = user-defined attributes from __init__
         # attrs = attributes added for rendering.
         # context['attrs'] contains a merge of self.attrs and attrs
-        # NB If crispy forms is used, it will contain 'class': 'datepicker form-control' for DatePicker widget
+        # NB If crispy forms is used, it will already contain 'class': 'datepicker form-control' for DatePicker widget
 
         all_attrs = context['widget']['attrs']
-        cls = all_attrs['class']
-        if not 'form-control' in cls:
+        cls = all_attrs.get('class', '')
+        if 'form-control' not in cls:
             cls = 'form-control ' + cls
-        # Add the attribute that makes datepicker popup close when focus changes
+        # Add the attribute that makes datepicker popup close when focus is lost
         cls += ' datetimepicker-input'
         all_attrs['class'] = cls
 
-        attr_html = ''
+        # defaults for our widget attributes
         input_toggle = True
         icon_toggle = True
         append = ''
         prepend = ''
+
+        attr_html = ''
         for attr_key, attr_value in all_attrs.items():
             if attr_key == 'prepend':
                 prepend = attr_value
@@ -124,9 +128,9 @@ class TempusDominusMixin:
                 formats = 'TIME_INPUT_FORMATS'
             else:
                 formats = 'DATETIME_INPUT_FORMATS'
-            for format in get_format(formats):
+            for fmt in get_format(formats):
                 try:
-                    value = datetime.strptime(value, format)
+                    value = datetime.strptime(value, fmt)
                     break
                 except (ValueError, TypeError):
                     continue

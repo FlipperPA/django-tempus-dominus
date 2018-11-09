@@ -26,8 +26,8 @@ def test_render_moment_unlocalized(settings):
         widget,
         widgets.DateTimePicker
     )
-    assert widget.js_options == {'format': 'YYYY-MM-DD HH:mm:ss'}
-
+    #assert widget.js_options == {'format': 'YYYY-MM-DD HH:mm:ss'}
+    assert 'YYYY-MM-DD HH:mm:ss' in widget.js_options['format']
 
 def test_datetime_form_localization(settings):
     settings.TEMPUS_DOMINUS_LOCALIZE = True
@@ -38,8 +38,8 @@ def test_datetime_form_localization(settings):
         widget,
         widgets.DateTimePicker
     )
-    assert widget.js_options == {'format': 'L LTS'}
-
+    #assert widget.js_options == {'format': 'L LTS'}
+    assert 'L LTS' in widget.js_options['format']
 
 def test_form_media():
     """Check that the widget media makes it up to the form"""
@@ -53,13 +53,42 @@ def test_form_media():
     assert set(form.media._js) == set(cdn_media._js)
 
 
-def test_disabled():
-    form = forms.DateFieldDisabled()
-    output = form.as_p()
+def test_class_attr_contents():
+    output = forms.DateFieldForm().as_p()
+    assert 'datetimepicker-input' in output
+
+
+def test_disabled_in_output():
+    output = forms.DateFieldDisabledForm().as_p()
     assert 'disabled' in output
 
 
-def test_not_required():
-    form = forms.DateFieldNotRequired()
-    output = form.as_p()
+def test_required_not_in_output():
+    output = forms.DateFieldNotRequiredForm().as_p()
     assert 'required' not in output
+
+
+def test_prepend():
+    output = forms.DateFieldPrependForm().as_p()
+    assert 'prepend' in output
+    assert 'fa fa-calendar' in output
+
+
+def test_append():
+    output = forms.TimeFieldAppendForm().as_p()
+    assert 'append' in output
+    assert 'fa fa-clock' in output
+
+
+def test_no_toggle():
+    output = forms.DateTimeFieldNoToggleForm().as_p()
+    assert 'datatoggle' not in output
+
+
+def test_field_with_value():
+    date_value = '2018-11-9'
+    form = forms.DateFieldForm()
+    form.fields['date_field'].value = date_value
+    output = form.as_p()
+    assert date_value in output
+
