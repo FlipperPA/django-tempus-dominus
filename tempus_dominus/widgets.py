@@ -136,8 +136,10 @@ class TempusDominusMixin:
                     continue
             else:
                 return {}
-
-        return {'defaultDate': value.isoformat()}
+        # Append an option to set the datepicker's value
+        # This only works for Date or DateTime, not Time alone.
+        # NB returning defaultDate causes a javascript error
+        return {'date': value.isoformat()}
 
     def get_js_format(self):
         raise NotImplementedError
