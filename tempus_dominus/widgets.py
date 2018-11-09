@@ -73,6 +73,7 @@ class TempusDominusMixin:
         icon_toggle = True
         append = ''
         prepend = ''
+        size = ''
 
         attr_html = ''
         for attr_key, attr_value in all_attrs.items():
