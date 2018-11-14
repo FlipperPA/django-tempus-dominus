@@ -6,7 +6,6 @@ from . import forms
 from tempus_dominus import widgets
 
 
-
 @pytest.mark.parametrize("form_class", [
     forms.DateFieldForm,
     forms.TimeFieldForm,
@@ -19,14 +18,14 @@ def test_forms_render(form_class):
     assert form_class().as_p()
 
 
-def test_render_moment_unlocalized(settings):
+def test_render_moment_unlocalized():
     form = forms.DateTimeFieldForm()
     widget = form.fields['datetime_field'].widget
     assert isinstance(
         widget,
         widgets.DateTimePicker
     )
-    assert widget.js_options == {'format': 'YYYY-MM-DD HH:mm:ss'}
+    assert 'YYYY-MM-DD HH:mm:ss' in widget.js_options['format']
 
 
 def test_datetime_form_localization(settings):
@@ -38,7 +37,7 @@ def test_datetime_form_localization(settings):
         widget,
         widgets.DateTimePicker
     )
-    assert widget.js_options == {'format': 'L LTS'}
+    assert 'L LTS' in widget.js_options['format']
 
 
 def test_form_media():
@@ -53,13 +52,36 @@ def test_form_media():
     assert set(form.media._js) == set(cdn_media._js)
 
 
-def test_disabled():
-    form = forms.DateFieldDisabled()
-    output = form.as_p()
+def test_class_attr_contents():
+    output = forms.DateFieldForm().as_p()
+    assert 'datetimepicker-input' in output
+
+
+def test_disabled_in_output():
+    output = forms.DateFieldDisabledForm().as_p()
     assert 'disabled' in output
 
 
-def test_not_required():
-    form = forms.DateFieldNotRequired()
-    output = form.as_p()
+def test_required_not_in_output():
+    output = forms.DateFieldNotRequiredForm().as_p()
     assert 'required' not in output
+
+
+def test_prepend():
+    output = forms.DateFieldPrependLargeForm().as_p()
+    assert 'prepend' in output
+    assert 'fa fa-calendar' in output
+    assert '-lg' in output
+
+
+def test_append():
+    output = forms.TimeFieldAppendSmallForm().as_p()
+    assert 'append' in output
+    assert 'fa fa-clock' in output
+    assert '-sm' in output
+
+
+def test_no_toggle():
+    output = forms.DateTimeFieldNoToggleForm().as_p()
+    assert 'datatoggle' not in output
+

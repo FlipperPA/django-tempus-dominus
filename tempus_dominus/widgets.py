@@ -34,29 +34,67 @@ def cdn_media():
 
 class TempusDominusMixin:
 
-    def __init__(self, attrs={'class': 'form-control datetimepicker-input'}, options=None):
+    def __init__(self, attrs=None, options=None):
         super().__init__()
 
+        # Set default options to include a clock item, otherwise datetimepicker shows no icon to switch intto time mode
+        self.js_options = {'format': self.get_js_format(),
+                           'icons': {'time': 'fa fa-clock'}
+                           }
         # If a dictionary of options is passed, combine it with our pre-set js_options.
-        self.js_options = {'format': self.get_js_format()}
-
         if isinstance(options, dict):
             self.js_options = {**self.js_options, **options}
+        # save any additional attributes that the user defined in self
+        self.attrs = attrs or {}
 
     @property
     def media(self):
         if getattr(settings, 'TEMPUS_DOMINUS_INCLUDE_ASSESTS', True):
             return cdn_media()
 
-    def render(self, name, value, attrs={}, renderer=None):
+    def render(self, name, value, attrs=None, renderer=None):
         context = super().get_context(name, value, attrs)
 
+        # self.attrs = user-defined attributes from __init__
+        # attrs = attributes added for rendering.
+        # context['attrs'] contains a merge of self.attrs and attrs
+        # NB If crispy forms is used, it will already contain 'class': 'datepicker form-control' for DatePicker widget
+
+        all_attrs = context['widget']['attrs']
+        cls = all_attrs.get('class', '')
+        if 'form-control' not in cls:
+            cls = 'form-control ' + cls
+        # Add the attribute that makes datepicker popup close when focus is lost
+        cls += ' datetimepicker-input'
+        all_attrs['class'] = cls
+
+        # defaults for our widget attributes
+        input_toggle = True
+        icon_toggle = True
+        append = ''
+        prepend = ''
+        size = ''
+
         attr_html = ''
-        for attr_key, attr_value in attrs.items():
-            attr_html += ' {key}="{value}"'.format(
-                key=attr_key,
-                value=attr_value,
-            )
+        for attr_key, attr_value in all_attrs.items():
+            if attr_key == 'prepend':
+                prepend = attr_value
+            elif attr_key == 'append':
+                append = attr_value
+            elif attr_key == 'input_toggle':
+                input_toggle = attr_value
+            elif attr_key == 'icon_toggle':
+                icon_toggle = attr_value
+            elif attr_key == 'size':
+                size = attr_value
+            elif attr_key == 'icon_toggle':
+                icon_toggle = attr_value
+            else:
+                attr_html += ' {key}="{value}"'.format(
+                    key=attr_key,
+                    value=attr_value,
+                )
+
         if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
             self.js_options['locale'] = get_language()
 
@@ -72,8 +110,12 @@ class TempusDominusMixin:
             'name': context['widget']['name'],
             'attrs': mark_safe(attr_html),
             'js_options': mark_safe(json.dumps(options)),
+            'prepend': prepend,
+            'append': append,
+            'icon_toggle': icon_toggle,
+            'input_toggle': input_toggle,
+            'size': size,
         })
-
         return mark_safe(force_text(field_html))
 
     def moment_option(self, value):
@@ -91,16 +133,18 @@ class TempusDominusMixin:
                 formats = 'TIME_INPUT_FORMATS'
             else:
                 formats = 'DATETIME_INPUT_FORMATS'
-            for format in get_format(formats):
+            for fmt in get_format(formats):
                 try:
-                    value = datetime.strptime(value, format)
+                    value = datetime.strptime(value, fmt)
                     break
                 except (ValueError, TypeError):
                     continue
             else:
                 return {}
-
-        return {'defaultDate': value.isoformat()}
+        # Append an option to set the datepicker's value
+        # This only works for Date or DateTime, not Time alone.
+        # NB returning defaultDate causes a javascript error
+        return {'date': value.isoformat()}
 
     def get_js_format(self):
         raise NotImplementedError
