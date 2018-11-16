@@ -13,7 +13,7 @@ from django.template.loader import render_to_string
 def cdn_media():
     css = {
         'all': (
-            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css',
+            '//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css',
         ),
     }
 
@@ -26,7 +26,7 @@ def cdn_media():
         ('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/'
          '{moment}.min.js'.format(moment=moment)),
         ('//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/'
-         '5.0.1/js/tempusdominus-bootstrap-4.min.js'),
+         '5.1.2/js/tempusdominus-bootstrap-4.min.js'),
     )
 
     return forms.Media(css=css, js=js)
