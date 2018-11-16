@@ -57,7 +57,8 @@ class MyForm(forms.Form):
         widget=TimePicker(
             options={
                 'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
-            }
+            },
+            input_toggle: False
         ),
     )
     datetime_field = forms.DateTimeField(
@@ -70,8 +71,6 @@ class MyForm(forms.Form):
         ),
     )
 ```
-
-The `options` dictionary will be passed to Tempus Dominus. [A full list of options is available here](https://tempusdominus.github.io/bootstrap-4/Options/).
 
 Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
@@ -103,6 +102,15 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
   </body>
 </html>
 ```
+
+## Widget Options
+
+* `options` (dictionary): This dictionary will be passed to Tempus Dominus. [A full list of options is available here](https://tempusdominus.github.io/bootstrap-4/Options/).
+* `input_toggle` (boolean, default `True`): Controls whether clicking on the input field toggles the datepicker popup. Typically is set to False when an icon is in use.
+* `size` (string): Controls the size of the input group (`small` or `large`). Defaults to the default size.
+* `prepend` (string): Name of a Font Awesome icon to prepend to the input field (`fa fa-calendar`).
+* `append` (string): Name of a Font Awesome icon to append to the input field (`fa fa-calendar`).
+* `icon_toggle` (boolean, default `True`): Controls whether clicking on the icon toggles the datepicker popup. Typically is set to False when an icon is in use.
 
 ## Change Log
 
