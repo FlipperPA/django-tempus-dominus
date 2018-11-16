@@ -15,7 +15,7 @@ pip install -e django-tempus-dominus
 
 Add `tempus_dominus` to `INSTALLED_APPS` in your Django settings.
 
-## Usage & Settings
+## Usage & Django Settings
 
 The following settings are available:
 
@@ -50,7 +50,7 @@ class MyForm(forms.Form):
             options={
                 'minDate': '2009-01-20',
                 'maxDate': '2017-01-20',
-            }
+            },
         ),
     )
     time_field = forms.TimeField(
@@ -58,7 +58,7 @@ class MyForm(forms.Form):
             options={
                 'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
             },
-            input_toggle: False
+            input_toggle: False,
         ),
     )
     datetime_field = forms.DateTimeField(
@@ -67,7 +67,10 @@ class MyForm(forms.Form):
                 'minDate': (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'),  # Tomorrow
                 'useCurrent': True,
                 'collapse': False,
-            }
+            },
+            append='fa fa-calendar',
+            input_toggle=False,
+            icon_toggle=True,
         ),
     )
 ```
