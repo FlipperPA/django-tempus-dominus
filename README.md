@@ -68,9 +68,11 @@ class MyForm(forms.Form):
                 'useCurrent': True,
                 'collapse': False,
             },
-            append='fa fa-calendar',
-            input_toggle=False,
-            icon_toggle=True,
+            attrs={
+               'append': 'fa fa-calendar',
+               'input_toggle': False,
+               'icon_toggle': True,
+            }
         ),
     )
 ```
