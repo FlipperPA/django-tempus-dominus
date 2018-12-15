@@ -6,14 +6,7 @@ Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 
 
 * From PyPI: `pip install django-tempus-dominus`
 
-* From source:
-
-```python
-git clone https://github.com/FlipperPA/django-tempus-dominus.git
-pip install -e django-tempus-dominus
-```
-
-Add `tempus_dominus` to `INSTALLED_APPS` in your Django settings.
+Then add `tempus_dominus` to `INSTALLED_APPS` in your Django settings.
 
 ## Usage & Django Settings
 
