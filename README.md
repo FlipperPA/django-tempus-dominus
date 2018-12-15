@@ -119,6 +119,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.1.2.1: Fix a bug with time formatting to use ISO time format (`T12:34:56`)
 * 5.1.2.0: Upgrade Tempus Dominus to 5.1.2. Support for new widget attributes (size, prepend, append, input_toggle, icon_toggle, class). DatePicker now closes after losing focus, and widget attributes are properly passed.
 * 5.0.1.5: Fix to ensure options are passed in proper JSON.
 * 5.0.1.4: Include template in the MANIFEST.in file.
