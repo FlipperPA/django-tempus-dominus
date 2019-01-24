@@ -1,5 +1,5 @@
-<div class="input-group {% if size == 'small' %}input-group-sm{% elif size == 'large' %}input-group-lg{% endif %}"
-  id="{{ picker_id }}" data-target-input="nearest">
+<div class="input-group{% if size == 'small' %} input-group-sm{% elif size == 'large' %} input-group-lg{% endif %}"
+  id="div_{{ picker_id }}" data-target-input="nearest">
   {% if prepend %}
     <div class="input-group-prepend" data-target="#{{ picker_id }}" {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
       <div class="input-group-text"><i class="{{ prepend }}"></i></div>
@@ -13,7 +13,7 @@
     </div>
   {% endif %}
 </div>
-  <script type="text/javascript">
+<script type="text/javascript">
     $(function () {
         $('#{{ picker_id }}').datetimepicker({{ js_options }});
     });
