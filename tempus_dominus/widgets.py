@@ -95,11 +95,12 @@ class TempusDominusMixin:
                     value=attr_value,
                 )
 
-        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
-            self.js_options['locale'] = get_language()
-
         options = {}
         options.update(self.js_options)
+
+        if getattr(settings, 'TEMPUS_DOMINUS_LOCALIZE', False) and 'locale' not in self.js_options:
+            options['locale'] = get_language()
+
         if context['widget']['value'] is not None:
             # Append an option to set the datepicker's value using a Javascript moment object
             options.update(self.moment_option(value))
