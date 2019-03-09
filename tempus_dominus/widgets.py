@@ -125,7 +125,6 @@ class TempusDominusMixin:
         When a form is first instantiated, value is a date, time or datetime object,
         but after a form has been submitted with an error and re-rendered, value contains a formatted string that
         we need to parse back to a date, time or datetime object.
-
         """
         if isinstance(value, str):
             if isinstance(self, DatePicker):
