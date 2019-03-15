@@ -119,6 +119,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.1.2.4: Add support for disabling the Bootstrap `input-group` with a new option. Fix an icon.
 * 5.1.2.3: Fix a bug which caused a page lag when switching locales.
 * 5.1.2.2: Fix a bug with duplicate DOM IDs in template.
 * 5.1.2.1: Fix a bug with time formatting to use ISO time format (`T12:34:56`)
