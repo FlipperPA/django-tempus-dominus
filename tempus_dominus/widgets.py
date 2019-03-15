@@ -71,6 +71,7 @@ class TempusDominusMixin:
         # defaults for our widget attributes
         input_toggle = True
         icon_toggle = True
+        input_group = True
         append = ''
         prepend = ''
         size = ''
@@ -83,6 +84,8 @@ class TempusDominusMixin:
                 append = attr_value
             elif attr_key == 'input_toggle':
                 input_toggle = attr_value
+            elif attr_key == 'input_group':
+                input_group = attr_value
             elif attr_key == 'icon_toggle':
                 icon_toggle = attr_value
             elif attr_key == 'size':
@@ -115,6 +118,7 @@ class TempusDominusMixin:
             'append': append,
             'icon_toggle': icon_toggle,
             'input_toggle': input_toggle,
+            'input_group': input_group,
             'size': size,
         })
         return mark_safe(force_text(field_html))
