@@ -52,22 +52,25 @@ class MyForm(forms.Form):
                 'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
             },
             attrs={
-                input_toggle: False,
-                input_group: False,
-            }
+                'input_toggle': True,
+                'input_group': False,
+            },
         ),
     )
     datetime_field = forms.DateTimeField(
         widget=DateTimePicker(
             options={
-                'minDate': (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'),  # Tomorrow
+                'minDate': (
+                    datetime.date.today() + datetime.timedelta(days=1)
+                ).strftime(
+                    '%Y-%m-%d'
+                ),  # Tomorrow
                 'useCurrent': True,
                 'collapse': False,
             },
             attrs={
-               'append': 'fa fa-calendar',
-               'input_toggle': False,
-               'icon_toggle': True,
+                'append': 'fa fa-calendar',
+                'icon_toggle': True,
             }
         ),
     )

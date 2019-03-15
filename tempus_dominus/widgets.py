@@ -145,12 +145,17 @@ class TempusDominusMixin:
                     continue
             else:
                 return {}
+
         # Append an option to set the datepicker's value using iso formatted string
         iso_date = value.isoformat()
+
         # iso format for time requires a prepended T
         if isinstance(self, TimePicker):
             iso_date = 'T' + iso_date
-        return {'date': iso_date}
+
+        return {
+            'date': iso_date,
+        }
 
     def get_js_format(self):
         raise NotImplementedError
