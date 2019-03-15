@@ -39,7 +39,7 @@ class TempusDominusMixin:
 
         # Set default options to include a clock item, otherwise datetimepicker shows no icon to switch intto time mode
         self.js_options = {'format': self.get_js_format(),
-                           'icons': {'time': 'fa fa-clock'}
+                           'icons': {'time': 'fa fa-clock-o'}
                            }
         # If a dictionary of options is passed, combine it with our pre-set js_options.
         if isinstance(options, dict):
