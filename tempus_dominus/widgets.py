@@ -37,10 +37,16 @@ def cdn_media():
 
 
 class TempusDominusMixin:
+    """
+    The Tempus Dominus Mixin contains shared functionality for the three types of date
+    pickers offered.
+    """
+
     def __init__(self, attrs=None, options=None):
         super().__init__()
 
-        # Set default options to include a clock item, otherwise datetimepicker shows no icon to switch intto time mode
+        # Set default options to include a clock item, otherwise datetimepicker
+        # shows no icon to switch intto time mode
         self.js_options = {
             "format": self.get_js_format(),
             "icons": {"time": "fa fa-clock-o"},
@@ -62,7 +68,8 @@ class TempusDominusMixin:
         # self.attrs = user-defined attributes from __init__
         # attrs = attributes added for rendering.
         # context['attrs'] contains a merge of self.attrs and attrs
-        # NB If crispy forms is used, it will already contain 'class': 'datepicker form-control' for DatePicker widget
+        # NB If crispy forms is used, it will already contain 'class': 'datepicker form-control'
+        # for DatePicker widget
 
         all_attrs = context["widget"]["attrs"]
         cls = all_attrs.get("class", "")
