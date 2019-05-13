@@ -59,7 +59,7 @@ class TempusDominusMixin:
 
     @property
     def media(self):
-        if getattr(settings, "TEMPUS_DOMINUS_INCLUDE_ASSESTS", True):
+        if getattr(settings, "TEMPUS_DOMINUS_INCLUDE_ASSETS", True):
             return cdn_media()
 
     def render(self, name, value, attrs=None, renderer=None):
