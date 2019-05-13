@@ -68,13 +68,15 @@ class TempusDominusMixin:
         # self.attrs = user-defined attributes from __init__
         # attrs = attributes added for rendering.
         # context['attrs'] contains a merge of self.attrs and attrs
-        # NB If crispy forms is used, it will already contain 'class': 'datepicker form-control'
+        # NB If crispy forms is used, it will already contain
+        # 'class': 'datepicker form-control'
         # for DatePicker widget
 
         all_attrs = context["widget"]["attrs"]
         cls = all_attrs.get("class", "")
         if "form-control" not in cls:
             cls = "form-control " + cls
+
         # Add the attribute that makes datepicker popup close when focus is lost
         cls += " datetimepicker-input"
         all_attrs["class"] = cls
@@ -110,13 +112,14 @@ class TempusDominusMixin:
         options.update(self.js_options)
 
         if (
-            getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False)
-            and "locale" not in self.js_options
+            getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False) and
+            "locale" not in self.js_options
         ):
             options["locale"] = get_language()
 
         if context["widget"]["value"] is not None:
-            # Append an option to set the datepicker's value using a Javascript moment object
+            # Append an option to set the datepicker's value using a Javascript
+            # moment object
             options.update(self.moment_option(value))
 
         field_html = render_to_string(
@@ -139,10 +142,11 @@ class TempusDominusMixin:
 
     def moment_option(self, value):
         """
-        Returns an option dict to set the default date and/or time using a Javascript moment object.
-        When a form is first instantiated, value is a date, time or datetime object,
-        but after a form has been submitted with an error and re-rendered, value contains a formatted string that
-        we need to parse back to a date, time or datetime object.
+        Returns an option dict to set the default date and/or time using a Javascript
+        moment object. When a form is first instantiated, value is a date, time or
+        datetime object, but after a form has been submitted with an error and
+        re-rendered, value contains a formatted string that we need to parse back to a
+        date, time or datetime object.
         """
         if isinstance(value, str):
             if isinstance(self, DatePicker):
