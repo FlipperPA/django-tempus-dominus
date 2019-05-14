@@ -45,9 +45,16 @@ class MyForm(forms.Form):
         ),
     )
     time_field = forms.TimeField(
+        """
+        In this example, the date portion of `defaultDate` is irrelevant;
+        only the time portion is used. The reason for this is that it has
+        to be passed in a valid MomentJS format. This will default the time
+        to be 14:56:00 (or 2:56pm).
+        """
         widget=TimePicker(
             options={
                 'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
+                'defaultDate': '1970-01-01T14:56:00'
             },
             attrs={
                 'input_toggle': True,
