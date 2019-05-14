@@ -119,6 +119,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.1.2.5: Typo bug in INCLUDE_ASSETS; switch to Black code formatting.
 * 5.1.2.4: Add support for disabling the Bootstrap `input-group` with a new option. Fix an icon.
 * 5.1.2.3: Fix a bug which caused a page lag when switching locales.
 * 5.1.2.2: Fix a bug with duplicate DOM IDs in template.
@@ -148,6 +149,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * Katherine Dey (https://github.com/deyspring)
 * Tiffany Huang (https://github.com/tiff8433)
 * Václav 'ax' Hůla (https://github.com/AxTheB)
+* Manuel Kappler (https://github.com/manuelkappler)
 * Kenneth Love (https://github.com/kennethlove)
 * Donna St. Louis (https://github.com/dcstlouis)
 * Ryan Sullivan (https://github.com/rgs258)
