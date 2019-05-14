@@ -11,6 +11,9 @@ from django.template.loader import render_to_string
 
 
 def cdn_media():
+    """
+    Returns the CDN locations for Tempus Dominus, included by default.
+    """
     css = {
         "all": (
             "//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css",
@@ -178,6 +181,10 @@ class TempusDominusMixin:
 
 
 class DatePicker(TempusDominusMixin, forms.widgets.DateInput):
+    """
+    Widget for Tempus Dominus DatePicker.
+    """
+
     def get_js_format(self):
         if getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False):
             js_format = "L"
@@ -187,6 +194,10 @@ class DatePicker(TempusDominusMixin, forms.widgets.DateInput):
 
 
 class DateTimePicker(TempusDominusMixin, forms.widgets.DateTimeInput):
+    """
+    Widget for Tempus Dominus DateTimePicker.
+    """
+
     def get_js_format(self):
         if getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False):
             js_format = "L LTS"
@@ -196,6 +207,10 @@ class DateTimePicker(TempusDominusMixin, forms.widgets.DateTimeInput):
 
 
 class TimePicker(TempusDominusMixin, forms.widgets.TimeInput):
+    """
+    Widget for Tempus Dominus TimePicker.
+    """
+
     def get_js_format(self):
         if getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False):
             js_format = "LTS"
