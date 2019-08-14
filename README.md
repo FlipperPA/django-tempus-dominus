@@ -43,6 +43,7 @@ class MyForm(forms.Form):
                 'maxDate': '2017-01-20',
             },
         ),
+        initial='2013-01-01',
     )
     """
     In this example, the date portion of `defaultDate` is irrelevant;

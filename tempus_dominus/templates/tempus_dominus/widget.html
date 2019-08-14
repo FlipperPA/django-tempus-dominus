@@ -16,7 +16,13 @@
 </div>
 {% endif %}
 <script type="text/javascript">
-    $(function () {
-        $('#{{ picker_id }}').datetimepicker({{ js_options }});
-    });
+    function deferDateTimePicker_{{ picker_id }}() {
+        if (window.jQuery && $.fn.datetimepicker) {
+            $('#{{ picker_id }}').datetimepicker({{ js_options }});
+        } else {
+            setTimeout(function() { deferDateTimePicker() }, 50);
+        }
+    }
+
+    deferDateTimePicker_{{ picker_id }}();
 </script>

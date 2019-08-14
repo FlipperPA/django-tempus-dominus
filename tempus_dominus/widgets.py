@@ -49,7 +49,7 @@ class TempusDominusMixin:
         super().__init__()
 
         # Set default options to include a clock item, otherwise datetimepicker
-        # shows no icon to switch intto time mode
+        # shows no icon to switch into time mode
         self.js_options = {
             "format": self.get_js_format(),
             "icons": {"time": "fa fa-clock-o"},
@@ -141,6 +141,7 @@ class TempusDominusMixin:
                 "size": size,
             },
         )
+
         return mark_safe(force_text(field_html))
 
     def moment_option(self, value):
