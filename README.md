@@ -120,6 +120,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.1.2.6: Include a defer function to play more nicely with different jQuery configurations.
 * 5.1.2.5: Typo bug in INCLUDE_ASSETS; switch to Black code formatting.
 * 5.1.2.4: Add support for disabling the Bootstrap `input-group` with a new option. Fix an icon.
 * 5.1.2.3: Fix a bug which caused a page lag when switching locales.
