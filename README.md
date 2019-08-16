@@ -131,8 +131,8 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * 5.0.1.4: Include template in the MANIFEST.in file.
 * 5.0.1.3: Add setting to exclude CDN CSS and JS assets. Add initial test suite.
 * 5.0.1.2: Documentation clean up.
-* 5.0.1.1: Option to l10n and i18n to all pickers.
-* 5.0.1.0: Upgrade to Tempus Dominus full release version `5.0.1`. Fix bug for populating initial values (thank you, @ianastewart).
+* 5.0.1.1: Option to use l10n and i18n to all pickers.
+* 5.0.1.0: Upgrade to Tempus Dominus full release version `5.0.1`. Fix bug for populating initial values.
 * 0.1.2: UX enhancement: auto-dismiss dialog if the input loses focus.
 * 0.1.1: Bug fixes.
 * 0.1.0: Initial release.
