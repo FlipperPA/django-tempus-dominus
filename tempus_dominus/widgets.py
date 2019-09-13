@@ -125,11 +125,13 @@ class TempusDominusMixin:
             # moment object
             options.update(self.moment_option(value))
 
+        # picker_id below has to be changed to underscores, as hyphens are not
+        # valid in JS function names.
         field_html = render_to_string(
             "tempus_dominus/widget.html",
             {
                 "type": context["widget"]["type"],
-                "picker_id": context["widget"]["attrs"]["id"],
+                "picker_id": context["widget"]["attrs"]["id"].replace("-", "_"),
                 "name": context["widget"]["name"],
                 "attrs": mark_safe(attr_html),
                 "js_options": mark_safe(json.dumps(options)),
