@@ -20,7 +20,7 @@
         if (window.jQuery && $.fn.datetimepicker) {
             $('#{{ picker_id }}').datetimepicker({{ js_options }});
         } else {
-            setTimeout(function() { deferDateTimePicker() }, 50);
+            setTimeout(function() { deferDateTimePicker_{{ picker_id }}() }, 50);
         }
     }
 
