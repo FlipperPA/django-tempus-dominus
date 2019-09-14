@@ -76,6 +76,7 @@ class TempusDominusMixin:
         # for DatePicker widget
 
         all_attrs = context["widget"]["attrs"]
+        all_attrs["id"] = all_attrs["id"].replace('-', '_')
         cls = all_attrs.get("class", "")
         if "form-control" not in cls:
             cls = "form-control " + cls
