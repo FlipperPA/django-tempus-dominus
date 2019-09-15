@@ -1,11 +1,11 @@
-from setuptools import setup, find_packages
+Bfrom setuptools import setup, find_packages
 
 with open("README.md") as f:
     long_description = f.read()
 
 setup(
     name="django-tempus-dominus",
-    version="5.1.2.7",
+    version="5.1.2.8",
     description="A Django widget for the Tempus Dominus Bootstrap 4 DateTime picker.",
     long_description=long_description,
     long_description_content_type="text/markdown",
