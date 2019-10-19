@@ -121,7 +121,13 @@ class TempusDominusMixin:
         ):
             options["locale"] = get_language()
 
-        if context["widget"]["value"] is not None:
+        if type(context["widget"]["value"]) is list:
+            # If using the widget in a MultiWidget, values will be returned in
+            # a list and must be checked individually.
+            for value in context["widget"]["value"]:
+                if value is not None:
+                    options.update(self.moment_option(value))
+        elif context["widget"]["value"] is not None:
             # Append an option to set the datepicker's value using a Javascript
             # moment object
             options.update(self.moment_option(value))
