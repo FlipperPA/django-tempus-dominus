@@ -64,6 +64,7 @@ class TempusDominusMixin:
     def media(self):
         if getattr(settings, "TEMPUS_DOMINUS_INCLUDE_ASSETS", True):
             return cdn_media()
+        return forms.Media()
 
     def render(self, name, value, attrs=None, renderer=None):
         context = super().get_context(name, value, attrs)

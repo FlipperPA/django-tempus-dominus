@@ -44,6 +44,14 @@ def test_form_media():
     assert set(form.media._js) == set(cdn_media._js)
 
 
+def test_no_include_assets(settings):
+    """Check that if we don't include assets the other media are still there"""
+    settings.TEMPUS_DOMINUS_INCLUDE_ASSETS = False
+    form = forms.FormWithMedia()
+
+    assert set(form.media._js) == set(['http://example.com/'])
+
+
 def test_class_attr_contents():
     output = forms.DateFieldForm().as_p()
     assert "datetimepicker-input" in output
