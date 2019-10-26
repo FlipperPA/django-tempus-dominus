@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import widgets
 from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 
 
@@ -62,3 +63,13 @@ class DateTimeFieldNoToggleForm(forms.Form):
     datetime_field = forms.DateTimeField(
         widget=DatePicker(attrs={"icon_toggle": False, "input_toggle": False})
     )
+
+
+class WidgetWithMedia(widgets.TextInput):
+    class Media:
+        js = ('http://example.com/',)
+
+
+class FormWithMedia(forms.Form):
+    date_field = forms.DateField(widget=DatePicker)
+    text_with_media = forms.CharField(widget=WidgetWithMedia)
