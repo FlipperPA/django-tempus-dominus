@@ -150,6 +150,7 @@ This package is largely maintained by the staff of [Wharton Research Data Servic
 
 * Stéphane "Twidi" Angel (https://github.com/twidi)
 * Jake Bell (https://github.com/theunraveler)
+* Bartłomiej Biernacki (https://github.com/pax0r)
 * John Carroll (https://github.com/johnnyporkchops)
 * Bryan Collazo (https://github.com/bcollazo)
 * Katherine Dey (https://github.com/deyspring)
