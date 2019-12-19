@@ -44,6 +44,7 @@ class TempusDominusMixin:
     The Tempus Dominus Mixin contains shared functionality for the three types of date
     pickers offered.
     """
+    template_name = "tempus_dominus/widget.html"
 
     def __init__(self, attrs=None, options=None):
         super().__init__()
@@ -130,7 +131,7 @@ class TempusDominusMixin:
         # picker_id below has to be changed to underscores, as hyphens are not
         # valid in JS function names.
         field_html = render_to_string(
-            "tempus_dominus/widget.html",
+            self.template_name,
             {
                 "type": context["widget"]["type"],
                 "picker_id": context["widget"]["attrs"]["id"].replace("-", "_"),
