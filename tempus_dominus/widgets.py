@@ -67,7 +67,7 @@ class TempusDominusMixin:
         return forms.Media()
 
     def render(self, name, value, attrs=None, renderer=None):
-        context = super().get_context(name, value, attrs)
+        context = self.get_context(name, value, attrs)
 
         # self.attrs = user-defined attributes from __init__
         # attrs = attributes added for rendering.
