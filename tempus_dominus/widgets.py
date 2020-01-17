@@ -3,7 +3,7 @@ import json
 
 from django import forms
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.formats import get_format
 from django.utils.translation import get_language
 from django.conf import settings
@@ -146,7 +146,7 @@ class TempusDominusMixin:
             },
         )
 
-        return mark_safe(force_text(field_html))
+        return mark_safe(force_str(field_html))
 
     def moment_option(self, value):
         """
