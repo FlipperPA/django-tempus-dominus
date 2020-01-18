@@ -1,6 +1,14 @@
 # Django Tempus Dominus
 
-Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 4 DateTime](https://tempusdominus.github.io/bootstrap-4/ "Tempus Dominus") date and time picker. Why yet another date and time picker for Django? None supported the Tempus Dominus date and time picker, which is actively developed and feature rich. It is a successor to the popular `bootstrap-datetimepicker` JavaScript library.
+## DEPRECATION NOTICE: Final Releasee
+
+**A Note About the Future of This Package**
+
+The parent project to this package, Tempus Dominus, is no longer receiving updates. The maintainer of Tempus Dominus put in a lot of work - thank you! - but doesn't have the cycles to continue maintaining it further. My colleagues and I need a robust date and time picker for our full time jobs, so we'll be looking for a good, accessible Bootstrap 4 solution over the next few months. When we've found the one we are going to use, we'll build another Django shim package similar to this one.
+
+Unless something changes with the future of Tempus Domnius, version `5.1.2.13` will be the final release of Django Tempus Dominus, which includes support for Django 3.0.
+
+Django Tempus Dominus provided Django widgets for the [Tempus Dominus Bootstrap 4 DateTime](https://tempusdominus.github.io/bootstrap-4/ "Tempus Dominus") date and time picker.
 
 ## Installation
 
@@ -120,6 +128,8 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.1.2.13: Deprecation notice to README.
+* 5.1.2.12: Fix issues with initial values not showing up in TimePicker.
 * 5.1.2.11: Fix deprecations introduced in Django 3.0 (`force_text` -> `force_str`).
 * 5.1.2.9: Include JS assets from the parent form if `TEMPUS_DOMINUS_INCLUDE_ASSETS` is `False`. Switch to using `setuptools-scm` instead of `MANIFEST.in`.
 * 5.1.2.7 / 5.1.2.8: Bug fix: if a field had a hyphen in the `id`, this would cause an error in the JS function. Force hyphens to underscores.
@@ -163,4 +173,5 @@ This package is largely maintained by the staff of [Wharton Research Data Servic
 * Donna St. Louis (https://github.com/dcstlouis)
 * Ryan Sullivan (https://github.com/rgs258)
 * Kevan Swanberg (https://github.com/kevswanberg)
+* Nick Träger (https://github.com/nick-traeger)
 * waymou (https://github.com/waymao)
