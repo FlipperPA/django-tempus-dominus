@@ -1,6 +1,6 @@
 # Django Tempus Dominus
 
-## DEPRECATION NOTICE: Final Releasee
+## DEPRECATION NOTICE: Final Release
 
 **A Note About the Future of This Package**
 
@@ -128,7 +128,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
-* 5.1.2.13: Deprecation notice to README.
+* 5.1.2.13: Add deprecation notice to README.
 * 5.1.2.12: Fix issues with initial values not showing up in TimePicker.
 * 5.1.2.11: Fix deprecations introduced in Django 3.0 (`force_text` -> `force_str`).
 * 5.1.2.9: Include JS assets from the parent form if `TEMPUS_DOMINUS_INCLUDE_ASSETS` is `False`. Switch to using `setuptools-scm` instead of `MANIFEST.in`.
