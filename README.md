@@ -1,14 +1,10 @@
 # Django Tempus Dominus
 
-## DEPRECATION NOTICE: Final Release
+Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 4 DateTime](https://tempusdominus.github.io/bootstrap-4/ "Tempus Dominus") date and time picker.
 
-**A Note About the Future of This Package**
+## A Note About the Future of This Package
 
-The parent project to this package, Tempus Dominus, is no longer receiving updates. The maintainer of Tempus Dominus put in a lot of work - thank you! - but doesn't have the cycles to continue maintaining it further. My colleagues and I need a robust date and time picker for our full time jobs, so we'll be looking for a good, accessible Bootstrap 4 solution over the next few months. When we've found the one we are going to use, we'll build another Django shim package similar to this one.
-
-Unless something changes with the future of Tempus Domnius, version `5.1.2.13` will be the final release of Django Tempus Dominus, which includes support for Django 3.0.
-
-Django Tempus Dominus provided Django widgets for the [Tempus Dominus Bootstrap 4 DateTime](https://tempusdominus.github.io/bootstrap-4/ "Tempus Dominus") date and time picker.
+The parent project to this package, Tempus Dominus, is being reworked. This package will not receive any updates until the parent project releases version 6, which will deprecate jQuery and Bootstrap as dependencies. When that occurs, we'll update this package to support v6.
 
 ## Installation
 
@@ -128,6 +124,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Change Log
 
+* 5.1.2.14: Bug fix for MomentJS times with certain granularities.
 * 5.1.2.13: Add deprecation notice to README.
 * 5.1.2.12: Fix issues with initial values not showing up in TimePicker.
 * 5.1.2.11: Fix deprecations introduced in Django 3.0 (`force_text` -> `force_str`).
