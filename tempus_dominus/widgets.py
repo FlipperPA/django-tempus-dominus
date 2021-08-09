@@ -17,7 +17,7 @@ def cdn_media():
     css = {
         "all": (
             "//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/"
-            "5.1.2/css/tempusdominus-bootstrap-4.min.css",
+            "5.39.0/css/tempusdominus-bootstrap-4.min.css",
         )
     }
 
@@ -33,7 +33,7 @@ def cdn_media():
         ),
         (
             "//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/"
-            "5.1.2/js/tempusdominus-bootstrap-4.min.js"
+            "5.39.0/js/tempusdominus-bootstrap-4.min.js"
         ),
     )
 
