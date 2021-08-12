@@ -160,11 +160,17 @@ class TempusDominusMixin:
         """
         if isinstance(value, str):
             if isinstance(self, DatePicker):
-                formats = [self.format] or get_format("DATE_INPUT_FORMATS")
+                formats = [self.format] if self.format else get_format(
+                    "DATE_INPUT_FORMATS"
+                )
             elif isinstance(self, TimePicker):
-                formats = [self.format] or get_format("TIME_INPUT_FORMATS")
+                formats = [self.format] if self.format else get_format(
+                    "TIME_INPUT_FORMATS"
+                )
             else:
-                formats = get_format("DATETIME_INPUT_FORMATS")
+                formats = [self.format] if self.format else get_format(
+                    "DATETIME_INPUT_FORMATS"
+                )
             for fmt in formats:
                 try:
                     value = datetime.strptime(value, fmt)
