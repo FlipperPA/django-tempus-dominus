@@ -4,7 +4,7 @@ Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 
 
 ## A Note About the Future of This Package
 
-The parent project to this package, Tempus Dominus, is being reworked. This package will not receive any updates until the parent project releases version 6, which will deprecate jQuery and Bootstrap as dependencies. When that occurs, we'll update this package to support v6.
+The parent project to this package, Tempus Dominus, is being reworked. This package will not receive any feature updates until the parent project releases version 6, which will deprecate jQuery and Bootstrap as dependencies. When that occurs, we'll update this package to support v6.
 
 ## Installation
 
@@ -121,31 +121,6 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * `prepend` (string): Name of a Font Awesome icon to prepend to the input field (`fa fa-calendar`).
 * `append` (string): Name of a Font Awesome icon to append to the input field (`fa fa-calendar`).
 * `icon_toggle` (boolean, default `True`): Controls whether clicking on the icon toggles the datepicker popup. Typically is set to False when an icon is in use.
-
-## Change Log
-
-* 5.1.2.14: Bug fix for MomentJS times with certain granularities.
-* 5.1.2.13: Add deprecation notice to README.
-* 5.1.2.12: Fix issues with initial values not showing up in TimePicker.
-* 5.1.2.11: Fix deprecations introduced in Django 3.0 (`force_text` -> `force_str`).
-* 5.1.2.9: Include JS assets from the parent form if `TEMPUS_DOMINUS_INCLUDE_ASSETS` is `False`. Switch to using `setuptools-scm` instead of `MANIFEST.in`.
-* 5.1.2.7 / 5.1.2.8: Bug fix: if a field had a hyphen in the `id`, this would cause an error in the JS function. Force hyphens to underscores.
-* 5.1.2.6: Include a defer function to play more nicely with different jQuery configurations.
-* 5.1.2.5: Typo bug in INCLUDE_ASSETS; switch to Black code formatting.
-* 5.1.2.4: Add support for disabling the Bootstrap `input-group` with a new option. Fix an icon.
-* 5.1.2.3: Fix a bug which caused a page lag when switching locales.
-* 5.1.2.2: Fix a bug with duplicate DOM IDs in template.
-* 5.1.2.1: Fix a bug with time formatting to use ISO time format (`T12:34:56`)
-* 5.1.2.0: Upgrade Tempus Dominus to 5.1.2. Support for new widget attributes (size, prepend, append, input_toggle, icon_toggle, class). DatePicker now closes after losing focus, and widget attributes are properly passed.
-* 5.0.1.5: Fix to ensure options are passed in proper JSON.
-* 5.0.1.4: Include template in the MANIFEST.in file.
-* 5.0.1.3: Add setting to exclude CDN CSS and JS assets. Add initial test suite.
-* 5.0.1.2: Documentation clean up.
-* 5.0.1.1: Option to use l10n and i18n to all pickers.
-* 5.0.1.0: Upgrade to Tempus Dominus full release version `5.0.1`. Fix bug for populating initial values.
-* 0.1.2: UX enhancement: auto-dismiss dialog if the input loses focus.
-* 0.1.1: Bug fixes.
-* 0.1.0: Initial release.
 
 ## Maintainers
 
