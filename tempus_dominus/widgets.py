@@ -174,6 +174,9 @@ class TempusDominusMixin:
             for fmt in formats:
                 try:
                     value = datetime.strptime(value, fmt)
+                    if isinstance(self, TimePicker):
+                        # strptime returns a date; get the time from it.
+                        value = value.time()
                     break
                 except (ValueError, TypeError):
                     continue
