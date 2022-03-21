@@ -124,8 +124,8 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Release Notes and Contributors
 
-* [Release notes](https://github.com/wharton/django-tempus-dominus/releases)
-* [Our wonderful contributors](https://github.com/wharton/django-tempus-dominus/graphs/contributors)
+* [Release notes](https://github.com/flipperpa/django-tempus-dominus/releases)
+* [Our wonderful contributors](https://github.com/flipperpa/django-tempus-dominus/graphs/contributors)
 
 ## Maintainers
 
