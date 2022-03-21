@@ -205,7 +205,7 @@ class DatePicker(TempusDominusMixin, forms.widgets.DateInput):
         if getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False):
             js_format = "L"
         else:
-            js_format = "YYYY-MM-DD"
+            js_format = getattr(settings, "TEMPUS_DOMINUS_DATE_FORMAT", "YYYY-MM-DD")
         return js_format
 
 
@@ -218,7 +218,7 @@ class DateTimePicker(TempusDominusMixin, forms.widgets.DateTimeInput):
         if getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False):
             js_format = "L LTS"
         else:
-            js_format = "YYYY-MM-DD HH:mm:ss"
+            js_format = getattr(settings, "TEMPUS_DOMINUS_DATETIME_FORMAT", "YYYY-MM-DD HH:mm:ss")
         return js_format
 
 
@@ -231,5 +231,5 @@ class TimePicker(TempusDominusMixin, forms.widgets.TimeInput):
         if getattr(settings, "TEMPUS_DOMINUS_LOCALIZE", False):
             js_format = "LTS"
         else:
-            js_format = "HH:mm:ss"
+            js_format = getattr(settings, "TEMPUS_DOMINUS_TIME_FORMAT", "HH:mm:ss")
         return js_format
