@@ -122,28 +122,14 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 * `append` (string): Name of a Font Awesome icon to append to the input field (`fa fa-calendar`).
 * `icon_toggle` (boolean, default `True`): Controls whether clicking on the icon toggles the datepicker popup. Typically is set to False when an icon is in use.
 
+## Release Notes and Contributors
+
+* [Release notes](https://github.com/wharton/django-tempus-dominus/releases)
+* [Our wonderful contributors](https://github.com/wharton/django-tempus-dominus/graphs/contributors)
+
 ## Maintainers
 
 * Timothy Allen (https://github.com/FlipperPA)
 * Ian Stewart (https://github.com/ianastewart)
 
 This package is largely maintained by the staff of [Wharton Research Data Services](https://wrds.wharton.upenn.edu/). We are thrilled that [The Wharton School](https://www.wharton.upenn.edu/) allows us a certain amount of time to contribute to open-source projects. We add features as they are necessary for our projects, and try to keep up with Issues and Pull Requests as best we can. Due to time constraints (our full time jobs!), Feature Requests without a Pull Request may not be implemented, but we are always open to new ideas and grateful for contributions and our package users.
-
-### Contributors & DjangoCon US Sprinters (Thank You!)
-
-* Stéphane "Twidi" Angel (https://github.com/twidi)
-* Jake Bell (https://github.com/theunraveler)
-* Bartłomiej Biernacki (https://github.com/pax0r)
-* John Carroll (https://github.com/johnnyporkchops)
-* Bryan Collazo (https://github.com/bcollazo)
-* Katherine Dey (https://github.com/deyspring)
-* Tiffany Huang (https://github.com/tiff8433)
-* Václav 'ax' Hůla (https://github.com/AxTheB)
-* Adam Johnson (https://github.com/adamchainz)
-* Manuel Kappler (https://github.com/manuelkappler)
-* Kenneth Love (https://github.com/kennethlove)
-* Donna St. Louis (https://github.com/dcstlouis)
-* Ryan Sullivan (https://github.com/rgs258)
-* Kevan Swanberg (https://github.com/kevswanberg)
-* Nick Träger (https://github.com/nick-traeger)
-* waymou (https://github.com/waymao)
