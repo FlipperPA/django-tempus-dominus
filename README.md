@@ -18,18 +18,18 @@ The following settings are available:
 
 * `TEMPUS_DOMINUS_LOCALIZE` (default: `False`): if `True`, widgets will be translated to the selected browser language and use the localized date and time formats.
 * `TEMPUS_DOMINUS_INCLUDE_ASSETS` (default: `True`): if `True`, loads Tempus Dominus and `moment` JS and CSS from Cloudflare's CDN, otherwise loading the JS and CSS are up to you.
+* `TEMPUS_DOMINUS_DATE_FORMAT` (default: `YYYY-MM-DD`)
+* `TEMPUS_DOMINUS_DATETIME_FORMAT` (default: `YYYY-MM-DD HH:mm:ss`)
+* `TEMPUS_DOMINUS_TIME_FORMAT` (default: `HH:mm:ss`)
 
 Three widgets are provided:
 
 * `DatePicker`
-    * Defaults to `YYYY-MM-DD`
-    * Defaults to `L` if `TEMPUS_DOMINUS_LOCALIZE` is `True`
+    * Defaults to `L` if `TEMPUS_DOMINUS_LOCALIZE` is `True`, otherwise `TEMPUS_DOMINUS_DATE_FORMAT`
 * `DateTimePicker`
-    * Defaults to `YYYY-MM-DD HH:mm:ss`
-    * Defaults to `L LTS` if `TEMPUS_DOMINUS_LOCALIZE` is `True`
+    * Defaults to `L LTS` if `TEMPUS_DOMINUS_LOCALIZE` is `True`, otherwise `TEMPUS_DOMINUS_DATETIME_FORMAT`
 * `TimePicker`
-    * Defaults to `HH:mm:ss`
-    * Defaults to `LTS` if `TEMPUS_DOMINUS_LOCALIZE` is `True`
+    * Defaults to `LTS` if `TEMPUS_DOMINUS_LOCALIZE` is `True`, otherwise `TEMPUS_DOMINUS_TIME_FORMAT`
 
 In your Django form, you can use the widgets like this:
 
