@@ -1,28 +1,29 @@
 {% if input_group %}
-  <div class="input-group{% if size == 'small' %} input-group-sm{% elif size == 'large' %} input-group-lg{% endif %}" id="div_{{ picker_id }}" data-target-input="nearest">
+    <div class="input-group{% if size == 'small' %} input-group-sm{% elif size == 'large' %} input-group-lg{% endif %}"
+         id="div_{{ picker_id }}" data-target-input="nearest">
 {% endif %}
 {% if prepend %}
-  <div class="input-group-prepend" data-target="#{{ picker_id }}" {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
-    <div class="input-group-text"><i class="{{ prepend }}"></i></div>
-  </div>
+    <div class="input-group-prepend" data-target="#{{ picker_id }}"
+         {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
+        <div class="input-group-text"><i class="{{ prepend }}"></i></div>
+    </div>
 {% endif %}
-<input type="{{ type }}" name="{{ name }}"{{ attrs }} {% if input_toggle %}data-toggle="datetimepicker"{% endif %} data-target="#{{ picker_id }}">
+<input type="{{ type }}" name="{{ name }}"{{ attrs }} {% if input_toggle %}data-toggle="datetimepicker"{% endif %}
+       data-target="#{{ picker_id }}">
 {% if append %}
-  <div class="input-group-append" data-target="#{{ picker_id }}" {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
-      <div class="input-group-text"><i class="{{ append }}"></i></div>
-  </div>
+    <div class="input-group-append" data-target="#{{ picker_id }}"
+         {% if icon_toggle %}data-toggle="datetimepicker"{% endif %}>
+        <div class="input-group-text"><i class="{{ append }}"></i></div>
+    </div>
 {% endif %}
 {% if input_group %}
-</div>
+    </div>
 {% endif %}
 <script type="text/javascript">
     function deferDateTimePicker_{{ picker_id }}() {
-        if (window.jQuery && $.fn.datetimepicker) {
-            $('#{{ picker_id }}').datetimepicker({{ js_options }});
-        } else {
-            setTimeout(function() { deferDateTimePicker_{{ picker_id }}() }, 50);
-        }
+        new tempusDominus.TempusDominus(document.getElementById("{{ picker_id }}")
+            {% if js_options %}, {{ js_options }}{% endif %}
+        );
     }
-
     deferDateTimePicker_{{ picker_id }}();
 </script>
