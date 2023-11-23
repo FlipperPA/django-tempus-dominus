@@ -2,8 +2,6 @@ import json
 from datetime import datetime
 
 from django import forms
-from django.template.loader import render_to_string
-from django.utils.encoding import force_str
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
@@ -65,6 +63,18 @@ class TempusDominusMixin:
             'clear': 'fas fa-trash',
             'close': 'fas fa-times',
         },
+        'ti_two': {
+            'type': 'icons',
+            'time': 'ti ti-clock',
+            'date': 'ti ti-calendar',
+            'up': 'ti ti-arrow-up',
+            'down': 'ti ti-arrow-down',
+            'previous': 'ti ti-chevron-left',
+            'next': 'ti ti-chevron-right',
+            'today': 'ti ti-calendar-check',
+            'clear': 'ti ti-trash',
+            'close': 'ti ti-square-x',
+        },
         'bi_one': {
             'type': 'icons',
             'time': 'bi bi-clock',
@@ -123,8 +133,10 @@ class TempusDominusMixin:
             return cdn_media()
         return forms.Media(css=TEMPUS_DOMINUS_CSS, js=TEMPUS_DOMINUS_JS)
 
-    def render(self, name, value, attrs=None, renderer=None):
+    def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
+
+        widget = context.get('widget', {})
 
         # self.attrs = user-defined attributes from __init__
         # attrs = attributes added for rendering.
@@ -133,7 +145,7 @@ class TempusDominusMixin:
         # 'class': 'datepicker form-control'
         # for DatePicker widget
 
-        all_attrs = context["widget"]["attrs"]
+        all_attrs = widget["attrs"]
         all_attrs["id"] = all_attrs["id"].replace('-', '_')
         cls = all_attrs.get("class", "")
         if "form-control" not in cls:
@@ -178,33 +190,24 @@ class TempusDominusMixin:
         ):
             options["locale"] = get_language()
 
-        if context["widget"]["value"] is not None:
+        if widget["value"] is not None:
             # Append an option to set the datepicker's value using a Javascript
             # moment object
             options.update(self.moment_option(value))
 
-        # picker_id below has to be changed to underscores, as hyphens are not
-        # valid in JS function names.
-        field_html = render_to_string(
-            "tempus_dominus/widget.html",
-            {
-                "widget": context["widget"],
-                "type": context["widget"]["type"],
-                "picker_id": context["widget"]["attrs"]["id"].replace("-", "_"),
-                "name": context["widget"]["name"],
-                "attrs": mark_safe(attr_html),
-                "value": value,
-                "js_options": mark_safe(json.dumps(options, cls=OptionsEncoder)),
-                "prepend": prepend,
-                "append": append,
-                "icon_toggle": icon_toggle,
-                "input_toggle": input_toggle,
-                "input_group": input_group,
-                "size": size,
-            },
-        )
-
-        return mark_safe(force_str(field_html))
+        widget.update({
+            "picker_id": widget["attrs"]["id"].replace("-", "_"),
+            "html_attrs": mark_safe(attr_html),
+            "x_value": value,
+            "js_options": mark_safe(json.dumps(options, cls=OptionsEncoder)),
+            "prepend": prepend,
+            "append": append,
+            "icon_toggle": icon_toggle,
+            "input_toggle": input_toggle,
+            "input_group": input_group,
+            "size": size,
+        })
+        return context
 
     def moment_option(self, value):
         """
