@@ -35,7 +35,7 @@ TEMPUS_DOMINUS_JS = getattr(
             moment="moment-with-locales" if TEMPUS_DOMINUS_LOCALIZE else "moment"
         ),
         "//cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js",
-        "//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{TEMPUS_DOMINUS_VERSION}"
+        f"//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{TEMPUS_DOMINUS_VERSION}"
         "/dist/js/tempus-dominus.min.js",
     ],
 )
