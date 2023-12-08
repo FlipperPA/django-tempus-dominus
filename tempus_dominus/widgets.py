@@ -7,9 +7,15 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
 
 from tempus_dominus.settings import (
-    TEMPUS_DOMINUS_LOCALIZE, TEMPUS_DOMINUS_INCLUDE_ASSETS, TEMPUS_DOMINUS_DATE_FORMAT,
-    TEMPUS_DOMINUS_DATETIME_FORMAT, TEMPUS_DOMINUS_TIME_FORMAT, TEMPUS_DOMINUS_CSS, TEMPUS_DOMINUS_JS,
-    TEMPUS_DOMINUS_VERSION, TEMPUS_DOMINUS_ICON_PACK,
+    TEMPUS_DOMINUS_LOCALIZE,
+    TEMPUS_DOMINUS_INCLUDE_ASSETS,
+    TEMPUS_DOMINUS_DATE_FORMAT,
+    TEMPUS_DOMINUS_DATETIME_FORMAT,
+    TEMPUS_DOMINUS_TIME_FORMAT,
+    TEMPUS_DOMINUS_CSS,
+    TEMPUS_DOMINUS_JS,
+    TEMPUS_DOMINUS_VERSION,
+    TEMPUS_DOMINUS_ICON_PACK,
 )
 from tempus_dominus.utils import OptionsEncoder
 
@@ -20,11 +26,8 @@ def cdn_media():
     """
     css = {
         "all": [
-            # "//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/"
-            # "5.39.0/css/tempusdominus-bootstrap-4.min.css",
-            "//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{version}/dist/css/tempus-dominus.min.css".format(
-                version=TEMPUS_DOMINUS_VERSION,
-            )
+            f"//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{TEMPUS_DOMINUS_VERSION}"
+            "/dist/css/tempus-dominus.min.css",
         ]
     }
 
@@ -37,9 +40,8 @@ def cdn_media():
         "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/"
         "{moment}.min.js".format(moment=moment),
         "//cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js",
-        "//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{version}/dist/js/tempus-dominus.min.js".format(
-            version=TEMPUS_DOMINUS_VERSION,
-        ),
+        f"//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{TEMPUS_DOMINUS_VERSION}"
+        "/dist/js/tempus-dominus.min.js",
     ]
 
     return forms.Media(css=css, js=js)
@@ -50,45 +52,46 @@ class TempusDominusMixin:
     The Tempus Dominus Mixin contains shared functionality for the three types of date
     pickers offered.
     """
+
     ICON_PACKS = {
-        'fa_five': {
-            'type': 'icons',
-            'time': 'fas fa-clock',
-            'date': 'fas fa-calendar',
-            'up': 'fas fa-arrow-up',
-            'down': 'fas fa-arrow-down',
-            'previous': 'fas fa-chevron-left',
-            'next': 'fas fa-chevron-right',
-            'today': 'fas fa-calendar-check',
-            'clear': 'fas fa-trash',
-            'close': 'fas fa-times',
+        "fa_five": {
+            "type": "icons",
+            "time": "fas fa-clock",
+            "date": "fas fa-calendar",
+            "up": "fas fa-arrow-up",
+            "down": "fas fa-arrow-down",
+            "previous": "fas fa-chevron-left",
+            "next": "fas fa-chevron-right",
+            "today": "fas fa-calendar-check",
+            "clear": "fas fa-trash",
+            "close": "fas fa-times",
         },
-        'ti_two': {
-            'type': 'icons',
-            'time': 'ti ti-clock',
-            'date': 'ti ti-calendar',
-            'up': 'ti ti-arrow-up',
-            'down': 'ti ti-arrow-down',
-            'previous': 'ti ti-chevron-left',
-            'next': 'ti ti-chevron-right',
-            'today': 'ti ti-calendar-check',
-            'clear': 'ti ti-trash',
-            'close': 'ti ti-square-x',
+        "ti_two": {
+            "type": "icons",
+            "time": "ti ti-clock",
+            "date": "ti ti-calendar",
+            "up": "ti ti-arrow-up",
+            "down": "ti ti-arrow-down",
+            "previous": "ti ti-chevron-left",
+            "next": "ti ti-chevron-right",
+            "today": "ti ti-calendar-check",
+            "clear": "ti ti-trash",
+            "close": "ti ti-square-x",
         },
-        'bi_one': {
-            'type': 'icons',
-            'time': 'bi bi-clock',
-            'date': 'bi bi-calendar-week',
-            'up': 'bi bi-arrow-up',
-            'down': 'bi bi-arrow-down',
-            'previous': 'bi bi-chevron-left',
-            'next': 'bi bi-chevron-right',
-            'today': 'bi bi-calendar-check',
-            'clear': 'bi bi-trash',
-            'close': 'bi bi-x',
+        "bi_one": {
+            "type": "icons",
+            "time": "bi bi-clock",
+            "date": "bi bi-calendar-week",
+            "up": "bi bi-arrow-up",
+            "down": "bi bi-arrow-down",
+            "previous": "bi bi-chevron-left",
+            "next": "bi bi-chevron-right",
+            "today": "bi bi-calendar-check",
+            "clear": "bi bi-trash",
+            "close": "bi bi-x",
         },
     }
-    template_name = 'tempus_dominus/widget.html'
+    template_name = "tempus_dominus/widget.html"
 
     def __init__(self, attrs=None, options=None, format=None):
         super().__init__()
@@ -102,18 +105,21 @@ class TempusDominusMixin:
                 "format": self.get_js_format(),
             },
             "display": {
-                "icons": self.ICON_PACKS.get(TEMPUS_DOMINUS_ICON_PACK, {
-                    'type': 'icons',
-                    'time': 'fa-solid fa-clock',
-                    'date': 'fa-solid fa-calendar',
-                    'up': 'fa-solid fa-arrow-up',
-                    'down': 'fa-solid fa-arrow-down',
-                    'previous': 'fa-solid fa-chevron-left',
-                    'next': 'fa-solid fa-chevron-right',
-                    'today': 'fa-solid fa-calendar-check',
-                    'clear': 'fa-solid fa-trash',
-                    'close': 'fa-solid fa-xmark'
-                }),
+                "icons": self.ICON_PACKS.get(
+                    TEMPUS_DOMINUS_ICON_PACK,
+                    {
+                        "type": "icons",
+                        "time": "fa-solid fa-clock",
+                        "date": "fa-solid fa-calendar",
+                        "up": "fa-solid fa-arrow-up",
+                        "down": "fa-solid fa-arrow-down",
+                        "previous": "fa-solid fa-chevron-left",
+                        "next": "fa-solid fa-chevron-right",
+                        "today": "fa-solid fa-calendar-check",
+                        "clear": "fa-solid fa-trash",
+                        "close": "fa-solid fa-xmark",
+                    },
+                ),
             },
         }
         display_components = self.get_display_components()
@@ -136,7 +142,7 @@ class TempusDominusMixin:
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
 
-        widget = context.get('widget', {})
+        widget = context.get("widget", {})
 
         # self.attrs = user-defined attributes from __init__
         # attrs = attributes added for rendering.
@@ -146,7 +152,7 @@ class TempusDominusMixin:
         # for DatePicker widget
 
         all_attrs = widget["attrs"]
-        all_attrs["id"] = all_attrs["id"].replace('-', '_')
+        all_attrs["id"] = all_attrs["id"].replace("-", "_")
         cls = all_attrs.get("class", "")
         if "form-control" not in cls:
             cls = "form-control " + cls
@@ -185,9 +191,7 @@ class TempusDominusMixin:
         options = {}
         options.update(self.js_options)
 
-        if (
-            TEMPUS_DOMINUS_LOCALIZE and "locale" not in self.js_options
-        ):
+        if TEMPUS_DOMINUS_LOCALIZE and "locale" not in self.js_options:
             options["locale"] = get_language()
 
         if widget["value"] is not None:
@@ -195,18 +199,20 @@ class TempusDominusMixin:
             # moment object
             options.update(self.moment_option(value))
 
-        widget.update({
-            "picker_id": widget["attrs"]["id"].replace("-", "_"),
-            "html_attrs": mark_safe(attr_html),
-            "x_value": value,
-            "js_options": mark_safe(json.dumps(options, cls=OptionsEncoder)),
-            "prepend": prepend,
-            "append": append,
-            "icon_toggle": icon_toggle,
-            "input_toggle": input_toggle,
-            "input_group": input_group,
-            "size": size,
-        })
+        widget.update(
+            {
+                "picker_id": widget["attrs"]["id"].replace("-", "_"),
+                "html_attrs": mark_safe(attr_html),
+                "x_value": value,
+                "js_options": mark_safe(json.dumps(options, cls=OptionsEncoder)),
+                "prepend": prepend,
+                "append": append,
+                "icon_toggle": icon_toggle,
+                "input_toggle": input_toggle,
+                "input_group": input_group,
+                "size": size,
+            }
+        )
         return context
 
     def moment_option(self, value):
@@ -219,16 +225,18 @@ class TempusDominusMixin:
         """
         if isinstance(value, str):
             if isinstance(self, DatePicker):
-                formats = [self.format] if self.format else get_format(
-                    "DATE_INPUT_FORMATS"
+                formats = (
+                    [self.format] if self.format else get_format("DATE_INPUT_FORMATS")
                 )
             elif isinstance(self, TimePicker):
-                formats = [self.format] if self.format else get_format(
-                    "TIME_INPUT_FORMATS"
+                formats = (
+                    [self.format] if self.format else get_format("TIME_INPUT_FORMATS")
                 )
             else:
-                formats = [self.format] if self.format else get_format(
-                    "DATETIME_INPUT_FORMATS"
+                formats = (
+                    [self.format]
+                    if self.format
+                    else get_format("DATETIME_INPUT_FORMATS")
                 )
             for fmt in formats:
                 try:

@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from django.core.serializers.json import DjangoJSONEncoder
 
 
 class Options:
-
     def __init__(self, **options):
         self.defaults = {}
         self.options = options
@@ -41,17 +38,4 @@ class JsonUnquote:
 
 
 class OptionsEncoder(DjangoJSONEncoder):
-
-    # def default(self, o):
-    #     if isinstance(o, JsonUnquote):
-    #         if o.data:
-    #             return 'eval("%s")' % o.data
-    #     ret = super().default(o)
-    #     return ret
-    #
-    # def encode(self, o):
-    #     if isinstance(o, JsonUnquote):
-    #         return o.data
-    #     return super().encode(o)
-
     pass

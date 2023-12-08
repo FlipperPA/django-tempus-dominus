@@ -49,7 +49,7 @@ def test_no_include_assets(settings):
     settings.TEMPUS_DOMINUS_INCLUDE_ASSETS = False
     form = forms.FormWithMedia()
 
-    assert set(form.media._js) == set(['http://example.com/'])
+    assert set(form.media._js) == set(["http://example.com/"])
 
 
 def test_class_attr_contents():

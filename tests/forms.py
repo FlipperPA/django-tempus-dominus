@@ -50,7 +50,7 @@ class DateFieldPrependLargeForm(forms.Form):
 
 
 class TimeFieldAppendSmallForm(forms.Form):
-    """Test form with appended icon. """
+    """Test form with appended icon."""
 
     time_field = forms.TimeField(
         widget=DatePicker(attrs={"append": "fa fa-clock", "size": "small"})
@@ -67,7 +67,7 @@ class DateTimeFieldNoToggleForm(forms.Form):
 
 class WidgetWithMedia(widgets.TextInput):
     class Media:
-        js = ('http://example.com/',)
+        js = ("http://example.com/",)
 
 
 class FormWithMedia(forms.Form):

@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=["django"],
-    setup_requires=['setuptools_scm'],
+    setup_requires=["setuptools_scm"],
     use_scm_version=True,
     classifiers=[
         "Development Status :: 4 - Beta",
