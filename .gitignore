@@ -1,6 +1,3 @@
-# manage.py, always default to dev settings
-manage.py
-
 # Django media files
 media/*
 
