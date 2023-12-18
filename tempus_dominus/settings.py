@@ -16,28 +16,4 @@ TEMPUS_DOMINUS_DATETIME_FORMAT = getattr(
 
 TEMPUS_DOMINUS_TIME_FORMAT = getattr(settings, "TEMPUS_DOMINUS_TIME_FORMAT", "HH:mm:ss")
 
-TEMPUS_DOMINUS_CSS = getattr(
-    settings,
-    "TEMPUS_DOMINUS_CSS",
-    {
-        "all": [
-            f"//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{TEMPUS_DOMINUS_VERSION}"
-            "/dist/css/tempus-dominus.min.css",
-        ]
-    },
-)
-
-TEMPUS_DOMINUS_JS = getattr(
-    settings,
-    "TEMPUS_DOMINUS_JS",
-    [
-        "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/{moment}.min.js".format(
-            moment="moment-with-locales" if TEMPUS_DOMINUS_LOCALIZE else "moment"
-        ),
-        "//cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js",
-        f"//cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@{TEMPUS_DOMINUS_VERSION}"
-        "/dist/js/tempus-dominus.min.js",
-    ],
-)
-
 TEMPUS_DOMINUS_ICON_PACK = getattr(settings, "TEMPUS_DOMINUS_ICON_PACK", "fa_five")

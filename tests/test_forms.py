@@ -24,12 +24,14 @@ def test_render_moment_unlocalized():
 
 
 def test_datetime_form_localization(settings):
-    settings.TEMPUS_DOMINUS_LOCALIZE = True
+    # Override the setting
+    widgets.TEMPUS_DOMINUS_LOCALIZE = True
+    # Reload forms with the overridden widget settings
     importlib.reload(forms)
     form = forms.DateTimeFieldForm()
     widget = form.fields["datetime_field"].widget
+
     assert isinstance(widget, widgets.DateTimePicker)
-    print(widget.js_options)
     assert "L LTS" in widget.js_options["localization"]["format"]
 
 
@@ -47,8 +49,11 @@ def test_form_media():
 
 def test_no_include_assets(settings):
     """Check that if we don't include assets the other media are still there"""
-    settings.TEMPUS_DOMINUS_INCLUDE_ASSETS = False
+    widgets.TEMPUS_DOMINUS_INCLUDE_ASSETS = False
+    importlib.reload(forms)
     form = forms.FormWithMedia()
+
+    print(form.media._js)
 
     assert set(form.media._js) == set(["http://example.com/"])
 

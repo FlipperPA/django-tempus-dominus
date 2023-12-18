@@ -12,8 +12,6 @@ from tempus_dominus.settings import (
     TEMPUS_DOMINUS_DATE_FORMAT,
     TEMPUS_DOMINUS_DATETIME_FORMAT,
     TEMPUS_DOMINUS_TIME_FORMAT,
-    TEMPUS_DOMINUS_CSS,
-    TEMPUS_DOMINUS_JS,
     TEMPUS_DOMINUS_VERSION,
     TEMPUS_DOMINUS_ICON_PACK,
 )
@@ -135,9 +133,10 @@ class TempusDominusMixin:
 
     @property
     def media(self):
+        print("ASSETS SETTINGS", TEMPUS_DOMINUS_INCLUDE_ASSETS)
         if TEMPUS_DOMINUS_INCLUDE_ASSETS:
             return cdn_media()
-        return forms.Media(css=TEMPUS_DOMINUS_CSS, js=TEMPUS_DOMINUS_JS)
+        return forms.Media()
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
