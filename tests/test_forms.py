@@ -20,7 +20,7 @@ def test_render_moment_unlocalized():
     form = forms.DateTimeFieldForm()
     widget = form.fields["datetime_field"].widget
     assert isinstance(widget, widgets.DateTimePicker)
-    assert "YYYY-MM-DD HH:mm:ss" in widget.js_options["format"]
+    assert "yyyy-MM-dd HH:mm:ss" in widget.js_options["localization"]["format"]
 
 
 def test_datetime_form_localization(settings):
@@ -29,7 +29,8 @@ def test_datetime_form_localization(settings):
     form = forms.DateTimeFieldForm()
     widget = form.fields["datetime_field"].widget
     assert isinstance(widget, widgets.DateTimePicker)
-    assert "L LTS" in widget.js_options["format"]
+    print(widget.js_options)
+    assert "L LTS" in widget.js_options["localization"]["format"]
 
 
 def test_form_media():
