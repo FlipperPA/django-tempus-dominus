@@ -39,8 +39,10 @@ class MyForm(forms.Form):
         required=True,
         widget=DatePicker(
             options={
-                'minDate': '2009-01-20',
-                'maxDate': '2017-01-20',
+                'restrictions': {
+                    'minDate': '2009-01-20',
+                    'maxDate': '2017-01-20',
+                }
             },
         ),
         initial='2013-01-01',
@@ -54,12 +56,10 @@ class MyForm(forms.Form):
     time_field = forms.TimeField(
         widget=TimePicker(
             options={
-                'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
-                'defaultDate': '1970-01-01T14:56:00'
-            },
-            attrs={
-                'input_toggle': True,
-                'input_group': False,
+                'defaultDate': '1970-01-01T14:56:00',
+                'restrictions': {
+                    'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16]
+                }
             },
         ),
     )
@@ -67,12 +67,7 @@ class MyForm(forms.Form):
         widget=DateTimePicker(
             options={
                 'useCurrent': True,
-                'collapse': False,
             },
-            attrs={
-                'append': 'fa fa-calendar',
-                'icon_toggle': True,
-            }
         ),
     )
 ```
@@ -82,13 +77,6 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 ```HTML+Django
 <html>
   <head>
-    {# Include FontAwesome; required for icon display #}
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
-
-    {# Include Bootstrap 4 and jQuery #}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
     {# Django Tempus Dominus assets are included in `{{ form.media }}` #}
     {{ form.media }}
   </head>
@@ -110,7 +98,7 @@ Then in your template, include jQuery, `{{ form.media }}`, and render the form:
 
 ## Widget Options
 
-* `options` (dictionary): This dictionary will be passed to Tempus Dominus. [A full list of options is available here](https://tempusdominus.github.io/bootstrap-4/Options/).
+* `options` (dictionary): This dictionary will be passed to Tempus Dominus. [A full list of options is available here](https://getdatepicker.com/6/options/).
 * `input_toggle` (boolean, default `True`): Controls whether clicking on the input field toggles the datepicker popup. Typically is set to False when an icon is in use.
 * `input_group` (boolean, default `True`): Whether to include a Bootstrap 4 `input-group` around the picker.
 * `size` (string): Controls the size of the input group (`small` or `large`). Defaults to the default size.
