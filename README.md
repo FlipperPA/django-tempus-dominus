@@ -1,10 +1,6 @@
 # Django Tempus Dominus
 
-Django Tempus Dominus provides Django widgets for the [Tempus Dominus Bootstrap 4 DateTime](https://tempusdominus.github.io/bootstrap-4/ "Tempus Dominus") date and time picker.
-
-## A Note About the Future of This Package
-
-The parent project to this package, Tempus Dominus, is being reworked. This package will not receive any feature updates until the parent project releases version 6, which will deprecate jQuery and Bootstrap as dependencies. When that occurs, we'll update this package to support v6.
+Django Tempus Dominus provides Django widgets for the [Tempus Dominus v6](https://getdatepicker.com/ "Tempus Dominus") date and time picker.
 
 ## Installation
 
