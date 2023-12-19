@@ -133,7 +133,6 @@ class TempusDominusMixin:
 
     @property
     def media(self):
-        print("ASSETS SETTINGS", TEMPUS_DOMINUS_INCLUDE_ASSETS)
         if TEMPUS_DOMINUS_INCLUDE_ASSETS:
             return cdn_media()
         return forms.Media()

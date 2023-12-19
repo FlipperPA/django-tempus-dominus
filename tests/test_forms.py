@@ -53,8 +53,6 @@ def test_no_include_assets(settings):
     importlib.reload(forms)
     form = forms.FormWithMedia()
 
-    print(form.media._js)
-
     assert set(form.media._js) == set(["http://example.com/"])
 
 
