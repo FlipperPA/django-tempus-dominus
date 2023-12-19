@@ -13,7 +13,9 @@ class MinMaxDateFieldForm(forms.Form):
     """Test form for DatePicker widget with minDate and maxDate options."""
 
     date_field = forms.DateField(
-        widget=DatePicker(options={"minDate": "2009-01-20", "maxDate": "2017-01-20"})
+        widget=DatePicker(options={
+            "restrictions": {"minDate": "2009-01-20", "maxDate": "2017-01-20"}
+        })
     )
 
 
