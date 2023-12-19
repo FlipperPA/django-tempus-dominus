@@ -1,0 +1,15 @@
+<html>
+    <head>
+        {{ form.media }}
+    </head>
+    <body>
+        [ <a href="">Date Field</a> |
+        <a href="t/">Time Field</a> |
+        <a href="dt/">DateTime Field</a> ]
+
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </form>
+    </body>
+</html>
