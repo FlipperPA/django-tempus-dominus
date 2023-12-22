@@ -13,6 +13,7 @@ from tempus_dominus.settings import (
     TEMPUS_DOMINUS_DATETIME_FORMAT,
     TEMPUS_DOMINUS_TIME_FORMAT,
     TEMPUS_DOMINUS_VERSION,
+    TEMPUS_DOMINUS_CSS_CLASS,
     TEMPUS_DOMINUS_ICON_PACK,
 )
 from tempus_dominus.utils import OptionsEncoder
@@ -138,26 +139,31 @@ class TempusDominusMixin:
         return forms.Media()
 
     def get_context(self, name, value, attrs):
+        """
+        Modify the widget attributes, include the id and css classes that will be
+        used for styling.
+
+        * `self.attrs` can be passed during instantiation of the class by the developer
+        * `attrs` are attributes used for rendering
+        * context['attrs'] contain a merge of self.attrs and attrs
+
+        If crispy-forms are used, attrs["class"] will contain 'datepicker form-control'
+        """
         context = super().get_context(name, value, attrs)
 
         widget = context.get("widget", {})
-
-        # self.attrs = user-defined attributes from __init__
-        # attrs = attributes added for rendering.
-        # context['attrs'] contains a merge of self.attrs and attrs
-        # NB If crispy forms is used, it will already contain
-        # 'class': 'datepicker form-control'
-        # for DatePicker widget
-
         all_attrs = widget["attrs"]
         all_attrs["id"] = all_attrs["id"].replace("-", "_")
-        cls = all_attrs.get("class", "")
-        if "form-control" not in cls:
-            cls = "form-control " + cls
+
+        css_classes = all_attrs.get("class", "").split()
+
+        # If a CSS class is not specified, use the default from settings
+        if not css_classes:
+            css_classes.append(TEMPUS_DOMINUS_CSS_CLASS)
 
         # Add the attribute that makes datepicker popup close when focus is lost
-        cls += " datetimepicker-input"
-        all_attrs["class"] = cls
+        css_classes.append("datetimepicker-input")
+        all_attrs["class"] = " ".join(css_classes)
 
         # defaults for our widget attributes
         input_toggle = True

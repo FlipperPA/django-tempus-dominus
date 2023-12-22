@@ -22,8 +22,9 @@
 {% endif %}
 <script type="text/javascript">
     function deferDateTimePicker_{{ widget.picker_id }}() {
-        new tempusDominus.TempusDominus(document.getElementById("{{ widget.picker_id }}")
-            {% if widget.js_options %}, {{ widget.js_options }}{% endif %}
+        new tempusDominus.TempusDominus(
+            document.getElementById("{{ widget.picker_id }}"){% if widget.js_options %},
+            {{ widget.js_options }}{% endif %}
         );
     }
 

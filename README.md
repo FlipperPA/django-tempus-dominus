@@ -17,6 +17,10 @@ The following settings are available:
 * `TEMPUS_DOMINUS_DATE_FORMAT` (default: `yyyy-MM-dd`)
 * `TEMPUS_DOMINUS_DATETIME_FORMAT` (default: `yyyy-MM-dd HH:mm:ss`)
 * `TEMPUS_DOMINUS_TIME_FORMAT` (default: `HH:mm:ss`)
+* `TEMPUS_DOMINUS_CSS_CLASS` (default: `form-control`): this CSS class will be applied to the form input, defaulting to Bootstrap's `form-control`. It can be overridden by passing `attrs` during instantiation.
+* `TEMPUS_DOMINUS_ICON_PACK` (default: `fa_five`): the icon pack to use. Accepted values:
+    * `fa_five`: FontAwesome 5
+    * `bi_one`: Bootstrap Icons 1
 
 Three widgets are provided:
 

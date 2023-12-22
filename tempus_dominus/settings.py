@@ -16,4 +16,6 @@ TEMPUS_DOMINUS_DATETIME_FORMAT = getattr(
 
 TEMPUS_DOMINUS_TIME_FORMAT = getattr(settings, "TEMPUS_DOMINUS_TIME_FORMAT", "HH:mm:ss")
 
+TEMPUS_DOMINUS_CSS_CLASS = getattr(settings, "TEMPUS_DOMINUS_CSS_CLASS", "form-control")
+
 TEMPUS_DOMINUS_ICON_PACK = getattr(settings, "TEMPUS_DOMINUS_ICON_PACK", "fa_five")
